@@ -1,8 +1,5 @@
-import {Input, Teams, Heros} from '../../types';
-
-interface ActionType{
-    type: string;
-}
+import {Input, Teams, Heros, TeamTypes} from '../../types';
+import { ActionTypes, Action } from '../actions';
 
 const dummyData:Input = {
     winner: undefined,
@@ -102,8 +99,24 @@ const dummyData:Input = {
     }
 }
 
-const inputReducer = (state:Input=dummyData, action:ActionType) =>{
+const inputReducer = (state:Input=dummyData, action:Action) =>{
     switch(action.type){
+        case ActionTypes.SwitchHero:
+            if( action.payload.column && 
+                action.payload.type && 
+                action.payload.hero &&
+                action.payload.column >= 1 &&
+                action.payload.column <= 6 
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    state.home.players[action.payload.column - 1].hero = action.payload.hero;
+                    return state;
+                }else{
+                    state.away.players[action.payload.column - 1].hero = action.payload.hero;
+                    return state;
+                }
+            }
+            return state;
         default:
             return state;
     }
