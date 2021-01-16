@@ -117,6 +117,19 @@ const inputReducer = (state:Input=dummyData, action:Action) =>{
                 }
             }
             return state;
+        case ActionTypes.SwitchTeam:
+            if( action.payload.type && 
+                action.payload.team
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    state.home.team = action.payload.team;
+                    return state;
+                }else{
+                    state.away.team = action.payload.team;;
+                    return state;
+                }
+            }
+            return state;
         default:
             return state;
     }
