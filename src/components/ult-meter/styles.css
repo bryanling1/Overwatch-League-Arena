@@ -1,0 +1,87 @@
+.pie__container{
+    width: 200px;
+    height: 200px;
+    position: relative;
+  }
+  #mask{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+  .pie__container--chart{
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  .pie__container--chart svg {
+    width: 100%; 
+    height: 100%;
+    transform: rotate(-90deg);
+    border-radius: 50%;
+  }
+  
+  .pie__container--chart circle {
+    fill: rgba(255, 255, 255, 0.0);
+    stroke: #F2AE1C;
+    stroke-width: 32;
+    stroke-dasharray: 0 100; 
+    transition: stroke-dasharray .5s ease;
+  }
+  
+  
+  .pie__container--percent {
+    position:absolute;
+    right:18%;
+    top:22%;
+    font-size: 32px;
+    color: #ffffff;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  
+  .clip-svg {
+    clip-path: url(#myClip);
+    width: 100%;
+  }
+  
+  #smaller-ring{
+    transform: scale(0.62);
+    position: absolute;
+  }
+  
+  .number{
+    position: absolute;
+  }
+  /*colors*/
+  #background-ring > path{
+    fill: rgba(200, 200, 200, 0.4);
+  }
+  
+  .ring-color{
+    fill: blue !important;
+  }
+  
+  .ring-color-stroke{
+    stroke: blue !important;
+  }
+  
+  .number{
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+    font-size: 80px;
+    font-weight: bold;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+  }
+  
+  .pie__container{
+    transform: scale(1);
+  }
+
+  .cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}

@@ -10,9 +10,9 @@ interface StateProps{
 const Lucio = (props:StateProps) =>{
     const {team} = props;
     return(
-        <LucioWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyLucio}.mp4`} type="video/mp4"/>}
-        </LucioWrapper>
+        <div>
+        {team === Teams.dynasty && <LucioWrapper src={`videos/${HeroSkins.dynastyLucio}.mp4`}/>}
+        </div>
     )
 }
 

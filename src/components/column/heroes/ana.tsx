@@ -10,9 +10,9 @@ interface StateProps{
 const Ana = (props:StateProps) =>{
     const {team} = props;
     return(
-        <AnaWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyAna}.mp4`} type="video/mp4"/>}
-        </AnaWrapper>
+        <div>
+        {team === Teams.dynasty && <AnaWrapper src={`videos/${HeroSkins.dynastyAna}.mp4`}/>}
+        </div>
     )
 }
 

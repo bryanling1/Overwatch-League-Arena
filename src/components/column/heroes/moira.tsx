@@ -10,9 +10,9 @@ interface StateProps{
 const Moira = (props:StateProps) =>{
     const {team} = props;
     return(
-        <MoiraWrapper>
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyMoira}.mp4`} type="video/mp4"/>}
-        </MoiraWrapper>
+        <div>
+        {team === Teams.dynasty && <MoiraWrapper src={`videos/${HeroSkins.dynastyMoira}.mp4`}/>}
+        </div>
     )
 }
 

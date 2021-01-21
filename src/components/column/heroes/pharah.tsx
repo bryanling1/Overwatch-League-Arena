@@ -10,9 +10,9 @@ interface StateProps{
 const Pharah = (props:StateProps) =>{
     const {team} = props;
     return(
-        <PharahWrapper>
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyPharah}.mp4`} type="video/mp4"/>}
-        </PharahWrapper>
+        <div>
+        {team === Teams.dynasty && <PharahWrapper src={`videos/${HeroSkins.dynastyPharah}.mp4`}/>}
+        </div>
     )
 }
 

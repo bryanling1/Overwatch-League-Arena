@@ -35,7 +35,7 @@ const ColumnWrapper = styled.div`
         background-size: cover;
         position: relative;
         overflow: hidden;
-        background-color: black;
+        background-color: white;
     }
 `
 

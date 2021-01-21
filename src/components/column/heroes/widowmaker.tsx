@@ -10,9 +10,9 @@ interface StateProps{
 const Widowmaker = (props:StateProps) =>{
     const {team} = props;
     return(
-        <WidowmakerWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyWidowmaker}.mp4`} type="video/mp4"/>}
-        </WidowmakerWrapper>
+        <div>
+        {team === Teams.dynasty && <WidowmakerWrapper src={`videos/${HeroSkins.dynastyWidowmaker}.mp4`}/>}
+        </div>
     )
 }
 

@@ -10,9 +10,9 @@ interface StateProps{
 const Reaper = (props:StateProps) =>{
     const {team} = props;
     return(
-        <ReaperWrapper>
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyReaper}.mp4`} type="video/mp4"/>}
-        </ReaperWrapper>
+        <div>
+        {team === Teams.dynasty && <ReaperWrapper src={`videos/${HeroSkins.dynastyReaper}.mp4`}/>}
+        </div>
     )
 }
 

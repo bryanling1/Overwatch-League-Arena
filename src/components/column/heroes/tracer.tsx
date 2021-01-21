@@ -10,9 +10,9 @@ interface StateProps{
 const Tracer = (props:StateProps) =>{
     const {team} = props;
     return(
-        <TracerWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyTracer}.mp4`} type="video/mp4"/>}
-        </TracerWrapper>
+        <div>
+        {team === Teams.dynasty && <TracerWrapper src={`videos/${HeroSkins.dynastyTracer}.mp4`}/>}
+        </div>
     )
 }
 

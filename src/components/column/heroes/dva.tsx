@@ -10,9 +10,9 @@ interface StateProps{
 const Dva = (props:StateProps) =>{
     const {team} = props;
     return(
-        <DvaWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyDva}.mp4`} type="video/mp4"/>}
-        </DvaWrapper>
+        <div>
+        {team === Teams.dynasty && <DvaWrapper src={`videos/${HeroSkins.dynastyDva}.mp4`}/>}
+        </div>
     )
 }
 

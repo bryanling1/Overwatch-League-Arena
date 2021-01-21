@@ -10,9 +10,9 @@ interface StateProps{
 const Ashe = (props:StateProps) =>{
     const {team} = props;
     return(
-        <AsheWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyAshe}.mp4`} type="video/mp4"/>}
-        </AsheWrapper>
+        <div>
+        {team === Teams.dynasty && <AsheWrapper src={`videos/${HeroSkins.dynastyAshe}.mp4`}/>}
+        </div>
     )
 }
 

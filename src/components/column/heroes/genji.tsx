@@ -10,9 +10,9 @@ interface StateProps{
 const Genji = (props:StateProps) =>{
     const {team} = props;
     return(
-        <GenjiWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyGenji}.mp4`} type="video/mp4"/>}
-        </GenjiWrapper>
+        <div>
+        {team === Teams.dynasty && <GenjiWrapper src={`videos/${HeroSkins.dynastyGenji}.mp4`}/>}
+        </div>
     )
 }
 

@@ -10,9 +10,9 @@ interface StateProps{
 const Roadhog = (props:StateProps) =>{
     const {team} = props;
     return(
-        <RoadhogWrapper>
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyRoadhog}.mp4`} type="video/mp4"/>}
-        </RoadhogWrapper>
+        <div>
+        {team === Teams.dynasty && <RoadhogWrapper src={`videos/${HeroSkins.dynastyRoadhog}.mp4`}/>}
+        </div>
     )
 }
 

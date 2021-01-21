@@ -10,9 +10,9 @@ interface StateProps{
 const Ball = (props:StateProps) =>{
     const {team} = props;
     return(
-        <BallWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyBall}.mp4`} type="video/mp4"/>}
-        </BallWrapper>
+        <div>
+        {team === Teams.dynasty && <BallWrapper src={`videos/${HeroSkins.dynastyBall}.mp4`}/>}
+        </div>
     )
 }
 

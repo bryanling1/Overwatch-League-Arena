@@ -10,9 +10,9 @@ interface StateProps{
 const Sigma = (props:StateProps) =>{
     const {team} = props;
     return(
-        <SigmaWrapper>
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastySigma}.mp4`} type="video/mp4"/>}
-        </SigmaWrapper>
+        <div>
+        {team === Teams.dynasty && <SigmaWrapper src={`videos/${HeroSkins.dynastySigma}.mp4`}/>}
+        </div>
     )
 }
 

@@ -9,10 +9,11 @@ interface StateProps{
 
 const Zarya = (props:StateProps) =>{
     const {team} = props;
+    console.log(team)
     return(
-        <ZaryaWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyZarya}.mp4`} type="video/mp4"/>}
-        </ZaryaWrapper>
+        <div>
+        {team === Teams.dynasty && <ZaryaWrapper src={`videos/${HeroSkins.dynastyZarya}.mp4`}/>}
+        </div>
     )
 }
 

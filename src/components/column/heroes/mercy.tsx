@@ -10,9 +10,9 @@ interface StateProps{
 const Mercy = (props:StateProps) =>{
     const {team} = props;
     return(
-        <MercyWrapper>
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyMercy}.mp4`} type="video/mp4"/>}
-        </MercyWrapper>
+        <div>
+        {team === Teams.dynasty && <MercyWrapper src={`videos/${HeroSkins.dynastyMercy}.mp4`}/>}
+        </div>
     )
 }
 

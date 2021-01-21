@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Teams, HeroSkins} from '../../../types';
 import styled from 'styled-components';
 import VideoWrapper from '../video-wrapper';
@@ -10,9 +10,9 @@ interface StateProps{
 const Zenyatta = (props:StateProps) =>{
     const {team} = props;
     return(
-        <ZenWrapper>
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyZenyatta}.mp4`} type="video/mp4"/>}
-        </ZenWrapper>
+        <Fragment>
+        {team === Teams.dynasty && <ZenWrapper src={`videos/${HeroSkins.dynastyZenyatta}.mp4`}/>}
+        </Fragment>
     )
 }
 

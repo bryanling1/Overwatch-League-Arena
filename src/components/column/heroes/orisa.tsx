@@ -10,9 +10,9 @@ interface StateProps{
 const Orisa = (props:StateProps) =>{
     const {team} = props;
     return(
-        <OrisaWrapper>
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyOrisa}.mp4`} type="video/mp4"/>}
-        </OrisaWrapper>
+        <div>
+        {team === Teams.dynasty && <OrisaWrapper src={`videos/${HeroSkins.dynastyOrisa}.mp4`}/>}
+        </div>
     )
 }
 

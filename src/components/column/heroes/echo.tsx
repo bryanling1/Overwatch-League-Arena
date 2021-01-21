@@ -10,9 +10,9 @@ interface StateProps{
 const Echo = (props:StateProps) =>{
     const {team} = props;
     return(
-        <EchoWrapper >
-            {team === Teams.dynasty &&  <source src={`videos/${HeroSkins.dynastyEcho}.mp4`} type="video/mp4"/>}
-        </EchoWrapper>
+        <div>
+        {team === Teams.dynasty && <EchoWrapper src={`videos/${HeroSkins.dynastyEcho}.mp4`}/>}
+        </div>
     )
 }
 
