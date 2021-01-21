@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Gradient from './gradient';
+import UltMeter from './ult-meter';
 import {
     TeamGradients, 
     Column as ColumnType, 
@@ -15,12 +16,17 @@ interface StateProps{
 
 const Column = (props:StateProps) =>{
     const { player, team } = props;
-    const {hero} = player;
+    const {hero, ultCharge} = player;
     // const {hero, ultCharge, isAlive, health, username} = player;
     return(
         <ColumnWrapper>
-            <Gradient color={TeamGradients.dynasty}/>
-            <HeroSkin team={team} hero={hero}/>
+            <HiddenWrapper>
+                <Gradient color={TeamGradients.dynasty}/>
+                <HeroSkin team={team} hero={hero}/>
+            </HiddenWrapper>
+            <UltChargeWrapper>
+                <UltMeter percentage={ultCharge}/>
+            </UltChargeWrapper>    
         </ColumnWrapper>
     )
 }
@@ -34,8 +40,24 @@ const ColumnWrapper = styled.div`
         width: ${100/6}%;
         background-size: cover;
         position: relative;
-        overflow: hidden;
         background-color: white;
+    }
+`
+
+const HiddenWrapper = styled.div`
+    & {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+`
+
+const UltChargeWrapper = styled.div`
+    & {
+        height: 100%;
+        width: 100%;
+
     }
 `
 

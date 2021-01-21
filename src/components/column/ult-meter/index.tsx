@@ -1,17 +1,47 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import './styles.css';
+import gsap, {SteppedEase} from 'gsap';
 
 interface StateProps{
     percentage: number;
-    i: number;
 }
 const UltMeter = (props:StateProps) =>{
-    const {percentage, i} = props;
+    const {percentage} = props;
+
+    useEffect(()=>{
+        const timeline = gsap.timeline({repeat:-1})
+        // const timeline = gsap.timeline({onComplete:()=>{
+        //     timeline.pause();
+        //     // timeline.tweenFromTo('LOOP_START', 'LOOP_END', {repeat:-1})
+            
+        //   }});
+          
+          timeline
+          .to('.character1', {duration: 1, backgroundPosition: "-62790px",ease:SteppedEase['config'](91)})
+          .to('.character1', {display:'none', duration:0})
+          .to('.character2', {display:'block', duration:0}).addLabel('LOOP_START')
+          .to('.character2', {duration: 1, backgroundPosition: "-47610px",ease:SteppedEase['config'](69)})
+          .to('.character2', {display:'none', duration:0})
+          .to('.character3', {display:'block', duration:0})
+          .to('.character3', {duration: 1, backgroundPosition: "-47610px",ease:SteppedEase['config'](69)})
+          .to('.character3', {display:'none', duration:0})
+          .to('.character4', {display:'block', duration:0})
+          .to('.character4', {duration: 0.84, backgroundPosition: "-40020px",ease:SteppedEase['config'](58)})
+          .to('.character4', {display:'none', duration:0}).addLabel('LOOP_END')
+
+    }, [])
+    
+
+             
     return(
-        <MainWrapper index={i}>
+        <MainWrapper>
+            <div className="character1"></div>
+            <div className="character2"></div>
+            <div className="character3"></div>
+            <div className="character4"></div>
             <div className="pie__container">
-            <div className="number"><div>{percentage}</div></div>
+            {/* <div className="number"><div>{percentage}</div></div> */}
                 <div className="pie__container--chart clip-svg">
                 <svg viewBox="0 0 32 32">
                     <defs>
@@ -156,7 +186,7 @@ export default UltMeter;
 const MainWrapper = styled(({...props})=><div {...props}/>)`
     {
         position: absolute;
-        left: ${(props)=>-185 + props.index*360}px;
+        left: calc(200px - 100%);
         bottom: 200px;
         z-index: 2;
         color: white;

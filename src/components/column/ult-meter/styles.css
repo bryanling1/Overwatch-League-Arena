@@ -85,3 +85,40 @@
   }
 
   .cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}
+
+  .character1 {
+    background: url(https://i.ibb.co/YPFCNC8/spritesheet-11.png);
+    width: 690px;  height:388px; 
+    position: absolute;
+    top: 0;
+    left: 10px;
+  }
+  
+  .character2 {
+    background: url(https://i.ibb.co/H2JZFF2/spritesheet-7.png);
+    width: 690px;  
+    height:388px; 
+    position: absolute;
+    top: 0;
+    left: 10px;
+    display: none;
+    
+  }
+  
+  .character3{
+    background: url(https://i.ibb.co/zh2pSWR/spritesheet-8.png);
+    width: 690px;  height:388px; 
+    position: absolute;
+    top: 0;
+    left: 10px;
+    display: none;
+  }
+  
+  .character4{
+    background: url(https://i.ibb.co/nCXHYtL/spritesheet-10.png);
+    width: 690px;  height:388px; 
+    position: absolute;
+    top: 0;
+    left: 10px;
+    display: none;
+  }
