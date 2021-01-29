@@ -25,7 +25,6 @@
   
   .pie__container--chart circle {
     fill: rgba(255, 255, 255, 0.0);
-    stroke: #F2AE1C;
     stroke-width: 32;
     stroke-dasharray: 0 100; 
     transition: stroke-dasharray .5s ease;
@@ -61,13 +60,13 @@
     fill: rgba(200, 200, 200, 0.4);
   }
   
-  .ring-color{
+  /* .ring-color{
     fill: blue !important;
   }
   
   .ring-color-stroke{
     stroke: blue !important;
-  }
+  } */
   
   .number{
     font-family: sans-serif;
@@ -82,43 +81,69 @@
   
   .pie__container{
     transform: scale(1);
+    opacity: 1;
   }
 
   .cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}
 
-  .character1 {
-    background: url(https://i.ibb.co/YPFCNC8/spritesheet-11.png);
+  .ult-icon{
+    width: 220px;
+    height: 220px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    background-image: url(https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5e/Ability-zenyatta4.png);
+    background-repeat: no-repeat;
+    background-size: 65%;
+    background-position: center center;
+    border-radius: 100%;
+  }
+  .character{
     width: 690px;  height:388px; 
     position: absolute;
-    top: 0;
-    left: 10px;
+    top: 0px;
+    left: 25px;
+    transform: scale(3.1);
+    z-index: 4;
+    opacity: 0;
+  }
+
+  .character1 {
+    background: url(https://i.ibb.co/YPFCNC8/spritesheet-11.png);
   }
   
   .character2 {
     background: url(https://i.ibb.co/H2JZFF2/spritesheet-7.png);
-    width: 690px;  
-    height:388px; 
-    position: absolute;
-    top: 0;
-    left: 10px;
-    display: none;
-    
   }
   
   .character3{
     background: url(https://i.ibb.co/zh2pSWR/spritesheet-8.png);
-    width: 690px;  height:388px; 
-    position: absolute;
-    top: 0;
-    left: 10px;
-    display: none;
   }
   
   .character4{
     background: url(https://i.ibb.co/nCXHYtL/spritesheet-10.png);
-    width: 690px;  height:388px; 
+  }
+
+  
+  @font-face {
+    font-family: 'overwatch-numbers';
+    src: url('../../../fonts/steelfish eb it.ttf') format('truetype'); /* Modern Browsers */
+  }
+
+  .number{
+    font-family: 'overwatch-numbers';
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+    text-rendering: optimizeLegibility !important;
+    margin-top: -5px;
+    margin-left: -5px;
+    font-size: 80px;
+  }
+  .number-percentage{
+    font-family: sans-serif;
     position: absolute;
-    top: 0;
-    left: 10px;
-    display: none;
+    font-style: italic;
+    font-weight: bold;
+    right: 55px;
+    bottom: 70px;
+    font-size: 25px;
+    z-index: 5;
   }

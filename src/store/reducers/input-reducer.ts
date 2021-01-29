@@ -30,7 +30,7 @@ const dummyData:Input = {
             {
                 hero: Heros.widowmaker,
                 ultCharge: 50,
-                isAlive: false,
+                isAlive: true,
                 health: 100,
                 username:"player 4",
             },
@@ -187,6 +187,68 @@ const inputReducer = (state:Input=dummyData, action:Action) =>{
                 }
             }
             return state;
+        case ActionTypes.SetIsAlive:
+            if(
+                action.payload.column && 
+                action.payload.type &&
+                action.payload.isAlive !== undefined &&
+                action.payload.column >= 1 &&
+                action.payload.column <= 6 
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    let players = [...state.home.players];
+                    players[action.payload.column - 1].isAlive = action.payload.isAlive;
+                    return {
+                        ...state,
+                        home:{
+                            players:[...players],
+                            team: state.home.team
+                        }
+                    }
+                }else{
+                    let players = [...state.away.players];
+                    players[action.payload.column - 1].isAlive = action.payload.isAlive;
+                    return {
+                        ...state,
+                        away:{
+                            players:[...players],
+                            team: state.away.team
+                        }
+                    }
+                }
+            }
+            return state
+        case ActionTypes.SetUsername:
+            if(
+                action.payload.column && 
+                action.payload.type &&
+                action.payload.username !== undefined &&
+                action.payload.column >= 1 &&
+                action.payload.column <= 6 
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    let players = [...state.home.players];
+                    players[action.payload.column - 1].username = action.payload.username;
+                    return {
+                        ...state,
+                        home:{
+                            players:[...players],
+                            team: state.home.team
+                        }
+                    }
+                }else{
+                    let players = [...state.away.players];
+                    players[action.payload.column - 1].username = action.payload.username;
+                    return {
+                        ...state,
+                        away:{
+                            players:[...players],
+                            team: state.away.team
+                        }
+                    }
+                }
+            }
+            return state
         default:
             return state;
     }

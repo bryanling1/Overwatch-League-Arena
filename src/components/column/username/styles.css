@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'overwatch-numbers';
+    src: url('../../../fonts/steelfish eb.ttf') format('truetype'); /* Modern Browsers */
+  }
+
+  .username{
+    font-family: 'overwatch-numbers';
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+    text-rendering: optimizeLegibility !important;
+    font-size: 40px;
+    text-transform: uppercase;
+  }

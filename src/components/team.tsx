@@ -20,8 +20,8 @@ const Team = (props:PropState) =>{
                 })
             } */}
             {
-                players.map(player=>{
-                    return <Column player={player} team={team}/>
+                players.map((player, i)=>{
+                    return <Column key={i} player={player} team={team} column={i}/>
                 })
             }
         </TeamWrapper>
@@ -36,5 +36,7 @@ const TeamWrapper = styled.div`
         min-height; 100vh;
         height: 100vh;
         display: flex;
+        background-color: white;
+        justify-content: space-evenly;
     }
 `

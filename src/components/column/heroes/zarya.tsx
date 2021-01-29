@@ -9,7 +9,6 @@ interface StateProps{
 
 const Zarya = (props:StateProps) =>{
     const {team} = props;
-    console.log(team)
     return(
         <div>
         {team === Teams.dynasty && <ZaryaWrapper src={`videos/${HeroSkins.dynastyZarya}.mp4`}/>}

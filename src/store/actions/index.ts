@@ -4,6 +4,8 @@ export enum ActionTypes{
     SwitchHero = "SWITCH_HERO",
     SwitchTeam = "SWITCH_TEAM",
     SetPercentage = "SET_PERCENTAGE",
+    SetIsAlive = "SET_IS_ALIVE",
+    SetUsername = "SET_USERNAME",
 }
 
 export interface Payload{
@@ -12,6 +14,8 @@ export interface Payload{
     hero?: Heros;
     team?: Teams;
     percentage?: number;
+    isAlive?: boolean;
+    username?: string;
 }
 
 export interface Action{
@@ -40,6 +44,28 @@ export const setPercentage = (type:TeamTypes, column:number, percentage:number):
             type, 
             column,
             percentage
+        }
+    }
+}
+
+export const setIsAlive = (type: TeamTypes, column:number, isAlive:boolean):Action =>{
+    return {
+        type: ActionTypes.SetIsAlive,
+        payload:{
+            type,
+            column,
+            isAlive
+        }
+    }
+}
+
+export const setUsername = (type: TeamTypes, column:number, username:string):Action=>{
+    return{
+        type: ActionTypes.SetUsername,
+        payload:{
+            type,
+            column,
+            username
         }
     }
 }

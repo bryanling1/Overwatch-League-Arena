@@ -1,47 +1,163 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
 import './styles.css';
 import gsap, {SteppedEase} from 'gsap';
+import {
+    Heros,
+    Column as ColumnType, 
+    HeroUltIcons,
+    Teams,
+    getRingColor
+} from '../../../types';
 
 interface StateProps{
     percentage: number;
+    column: number;
+    player: ColumnType;
+    team: Teams;
 }
 const UltMeter = (props:StateProps) =>{
-    const {percentage} = props;
+
+    const {percentage, column, player, team} = props;
+    const timeline = useMemo(()=>gsap.timeline({repeat: -1, paused: true}), []);
+    const [ringColor, setRingColor] = useState('black');
 
     useEffect(()=>{
-        const timeline = gsap.timeline({repeat:-1})
-        // const timeline = gsap.timeline({onComplete:()=>{
-        //     timeline.pause();
-        //     // timeline.tweenFromTo('LOOP_START', 'LOOP_END', {repeat:-1})
-            
-        //   }});
-          
-          timeline
-          .to('.character1', {duration: 1, backgroundPosition: "-62790px",ease:SteppedEase['config'](91)})
-          .to('.character1', {display:'none', duration:0})
-          .to('.character2', {display:'block', duration:0}).addLabel('LOOP_START')
-          .to('.character2', {duration: 1, backgroundPosition: "-47610px",ease:SteppedEase['config'](69)})
-          .to('.character2', {display:'none', duration:0})
-          .to('.character3', {display:'block', duration:0})
-          .to('.character3', {duration: 1, backgroundPosition: "-47610px",ease:SteppedEase['config'](69)})
-          .to('.character3', {display:'none', duration:0})
-          .to('.character4', {display:'block', duration:0})
-          .to('.character4', {duration: 0.84, backgroundPosition: "-40020px",ease:SteppedEase['config'](58)})
-          .to('.character4', {display:'none', duration:0}).addLabel('LOOP_END')
+        timeline
+        .set(`#pie-${column}`, {opacity:1})
+        .set(`#col-${column}-1`, {opacity:0})
+        .set(`#col-${column}-2`, {opacity:0})
+        .set(`#col-${column}-3`, {opacity:0})
+        .set(`#col-${column}-4`, {opacity:0})
+        .set(`#col-${column}-1`, {opacity:1}).addLabel('start')
+        .to(`#col-${column}-1`, {duration: 1.4, backgroundPosition: "-62790px",ease:SteppedEase['config'](91)})
+        .fromTo(`#ult-icon-${column}`, {transform: `scale(0)`}, {transform: `scale(0.65)`, duration:0.1}, '<0.5')
+        .set(`#pie-${column}`, {opacity: 0}, '-=1.4')
+        .set(`#col-${column}-1`, {opacity:0}).addLabel('loopStart')
+        .set(`#col-${column}-2`, {opacity:1})
+        .to(`#col-${column}-2`, {duration: 1, backgroundPosition: "-47610px",ease:SteppedEase['config'](69)})
+        .set(`#col-${column}-2`, {opacity:0})
+        .set(`#col-${column}-3`, {opacity:1})
+        .to(`#col-${column}-3`, {duration: 1, backgroundPosition: "-47610px",ease:SteppedEase['config'](69)})
+        .set(`#col-${column}-3`, {opacity:0})
+        .set(`#col-${column}-4`, {opacity:1})
+        .to(
+            `#col-${column}-4`, 
+            {
+                duration: 0.84, 
+                backgroundPosition: "-40020px",
+                ease:SteppedEase['config'](58),
+                onComplete: ()=>timeline.seek('loopStart'),
+            }
+        ).addLabel('end')
 
-    }, [])
-    
+        timeline.seek('start');
+    }, [timeline, column])
 
-             
+    useEffect(()=>{
+        if(percentage === 100){
+            timeline.seek('start');
+            timeline.play();
+        }else{
+            if(timeline.isActive()){
+                timeline.pause();
+                timeline.seek('start');
+            }
+        }
+    }, [percentage, timeline])
+
+    const ultIcon = useMemo(()=>{
+        switch(player.hero){
+            case Heros.dva:
+                    return HeroUltIcons.dva
+            case Heros.orisa:
+                    return HeroUltIcons.orisa
+            case Heros.reinhardt:
+                    return HeroUltIcons.reinhardt
+            case Heros.roadhog:
+                    return HeroUltIcons.roadhog
+            case Heros.sigma:
+                    return HeroUltIcons.sigma
+            case Heros.winston:
+                    return HeroUltIcons.winston
+            case Heros.ball:
+                    return HeroUltIcons.ball
+            case Heros.zarya:
+                    return HeroUltIcons.zarya
+            case Heros.ashe:
+                    return HeroUltIcons.ashe
+            case Heros.bastion:
+                    return HeroUltIcons.bastion
+            case Heros.doomfist:
+                    return HeroUltIcons.doomfist
+            case Heros.echo:
+                    return HeroUltIcons.echo
+            case Heros.genji:
+                    return HeroUltIcons.genji
+            case Heros.hanzo:
+                    return HeroUltIcons.hanzo
+            case Heros.junkrat:
+                    return HeroUltIcons.junkrat
+            case Heros.mccree:
+                    return HeroUltIcons.mccree
+            case Heros.mei:
+                    return HeroUltIcons.mei
+            case Heros.pharah:
+                    return HeroUltIcons.pharah
+            case Heros.reaper:
+                    return HeroUltIcons.reaper
+            case Heros.soldier:
+                    return HeroUltIcons.soldier
+            case Heros.sombra:
+                    return HeroUltIcons.sombra
+            case Heros.symmetra:
+                    return HeroUltIcons.symmetra
+            case Heros.torb:
+                    return HeroUltIcons.torb
+            case Heros.tracer:
+                    return HeroUltIcons.tracer
+            case Heros.widowmaker:
+                    return HeroUltIcons.widowmaker
+            case Heros.ana:
+                    return HeroUltIcons.ana
+            case Heros.baptiste:
+                    return HeroUltIcons.baptiste
+            case Heros.brigitte:
+                    return HeroUltIcons.brigitte
+            case Heros.lucio:
+                    return HeroUltIcons.lucio
+            case Heros.mercy:
+                    return HeroUltIcons.mercy
+            case Heros.moira:
+                    return HeroUltIcons.moira
+            case Heros.zenyatta:
+                    return HeroUltIcons.zenyatta
+            default: 
+                return 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f7/Ability-ashe5.png'
+        }
+    }, [player.hero]);
+
+    useEffect(()=>{
+        setRingColor(getRingColor(team));
+    }, [team])
     return(
         <MainWrapper>
-            <div className="character1"></div>
-            <div className="character2"></div>
-            <div className="character3"></div>
-            <div className="character4"></div>
-            <div className="pie__container">
-            {/* <div className="number"><div>{percentage}</div></div> */}
+            <div id={`col-${column}-1`}className="character1 character"></div>
+            <div id={`col-${column}-2`}className="character2 character"></div>
+            <div id={`col-${column}-3`}className="character3 character"></div>
+            <div id={`col-${column}-4`}className="character4 character"></div>
+            <div 
+                id={`ult-icon-${column}`} 
+                className="ult-icon"
+                style={{
+                    backgroundImage: `url(${
+                        ultIcon
+                    })`
+                }}
+            />
+            <PieWrapper className="pie__container" id={`pie-${column}`} color="blue">
+            <div className="number">{percentage}</div>
+            <div className="number-percentage">%</div>
                 <div className="pie__container--chart clip-svg">
                 <svg viewBox="0 0 32 32">
                     <defs>
@@ -86,7 +202,16 @@ const UltMeter = (props:StateProps) =>{
                             <path d="M122.43,35.68a74.28,74.28,0,0,1,9.17,4.08l15.16-28a101.16,101.16,0,0,0-14.14-6.24Z" transform="translate(-0.61)" />
                         </clipPath>
                     </defs>
-                    <circle className="circle r-color ring-color-stroke" r="16" cx="16" cy="16" style={{strokeDasharray: `${percentage} 100`}} />
+                    <circle  
+                        className="circle r-color ring-color-stroke" 
+                        r="16" 
+                        cx="16" 
+                        cy="16" 
+                        style={{
+                            strokeDasharray: `${percentage} 100`, 
+                            stroke:ringColor,
+                        }} 
+                    />
                 </svg>
                 </div>
                 <svg id="smaller-ring" viewBox="0 0 123.85 123.93" className="ring-color">
@@ -95,7 +220,7 @@ const UltMeter = (props:StateProps) =>{
                             <path className="cls-1" d="M100,38a62,62,0,1,0,62,62A62,62,0,0,0,100,38Zm0,117.71a56.16,56.16,0,1,1,56.16-56.16A56.16,56.16,0,0,1,100,155.68Z"/>
                         </clipPath>
                     </defs>
-                    <g className="cls-2">
+                    <g className="cls-2" style={{fill: ringColor}}>
                         <path className="cls-3" d="M58.08,104l-19.77,1.43a62,62,0,0,0,2,11l19.13-5.16A43,43,0,0,1,58.08,104Z" transform="translate(-38.07 -38.03)"/>
                         <path className="cls-3" d="M62.13,118.46L44,126.56a74.75,74.75,0,0,0,3.89,7l16.75-10.72A48,48,0,0,1,62.13,118.46Z" transform="translate(-38.07 -38.03)"/>
                         <path className="cls-3" d="M65.15,123.54L48.47,134.26a62.58,62.58,0,0,0,6.43,8.1l14.53-13.5A39.29,39.29,0,0,1,65.15,123.54Z" transform="translate(-38.07 -38.03)"/>
@@ -176,7 +301,7 @@ const UltMeter = (props:StateProps) =>{
                 <path className="cls-1" d="M111.85,33a76.67,76.67,0,0,1,9.3,2.42l10.32-30.2a113.65,113.65,0,0,0-14.4-3.7Z" transform="translate(-0.61)"/>
                 <path className="cls-1" d="M122.43,35.68a74.28,74.28,0,0,1,9.17,4.08l15.16-28a101.16,101.16,0,0,0-14.14-6.24Z" transform="translate(-0.61)"/>
                 </svg>
-            </div>
+            </PieWrapper>
         </MainWrapper>
     )
 }
@@ -186,14 +311,22 @@ export default UltMeter;
 const MainWrapper = styled(({...props})=><div {...props}/>)`
     {
         position: absolute;
-        left: calc(200px - 100%);
-        bottom: 200px;
-        z-index: 2;
+        z-index: 6;
         color: white;
-        width: 690px;
-        height: 388px;
-        padding-left: 245px;
-        padding-top: 94px;
+        width: 670px;
+        height: 370px;
         box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+`
+
+const PieWrapper = styled.div`
+    & > .ring-color{
+        fill: ${props=>props.color}
+    }
+    & > circle {
+        stroke: ${props=>props.color} !important;
     }
 `

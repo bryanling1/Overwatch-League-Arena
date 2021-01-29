@@ -5,6 +5,9 @@ import {connect, ConnectedProps} from 'react-redux';
 import {StoreState} from '../store/reducers';
 import * as actions from '../store/actions';
 import Slider from '@material-ui/core/Slider';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import TextField from '@material-ui/core/TextField';
 
 function mapStateToProps(state:StoreState){
     return {
@@ -72,14 +75,33 @@ const Control = (props:Props) =>{
                                         })
                                     }
                                 </select>
-                                <Slider 
-                                    defaultValue={player.ultCharge}
+                                <SliderWrapper
+                                    value={player.ultCharge}
                                     onChange={(e,nextValue)=>{
-                                        console.log(props.type, i+1, nextValue)
                                         props.setPercentage(props.type, i+1, nextValue as number);
                                     }} 
                                     aria-labelledby="continuous-slider" /
                                 >
+                                <FormControlLabel
+                                    control={
+                                    <Switch
+                                        checked={player.isAlive}
+                                        onChange={(e)=>{
+                                            props.setIsAlive(props.type, i+1, e.target.checked);
+                                        }}
+                                        color="primary"
+                                    />
+                                    }
+                                    label="Alive"
+                                />
+                                <TextField
+                                    variant="outlined"
+                                    onChange={(e)=>{
+                                        props.setUsername(props.type, i+1, e.target.value);
+                                    }}
+                                    value={player.username}
+                                    size="small"
+                                />
                             </ColumnWrapper>
                         )
                     })
@@ -99,4 +121,13 @@ const MainWrapper = styled.div`
 `
 const ColumnWrapper = styled.div`
     display: inline-block;
+    max-width: 100px;
+    padding-left: 25px;
+    padding-right: 25px;
+`
+
+const SliderWrapper = styled(({...props})=><Slider {...props}/>)`
+    & {
+        width: 100%;
+    }
 `

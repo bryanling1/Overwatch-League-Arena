@@ -11,7 +11,7 @@ const Ana = (props:StateProps) =>{
     const {team} = props;
     return(
         <div>
-        {team === Teams.dynasty && <AnaWrapper src={`videos/${HeroSkins.dynastyAna}.mp4`}/>}
+        {team === Teams.dynasty && <AnaWrapper src={`videos/${HeroSkins.dynastyAna}.m4v`}/>}
         </div>
     )
 }
