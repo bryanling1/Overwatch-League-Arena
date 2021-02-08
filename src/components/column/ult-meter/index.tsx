@@ -310,7 +310,7 @@ export default UltMeter;
 
 const MainWrapper = styled(({...props})=><div {...props}/>)`
     {
-        position: absolute;
+        position: relative;
         z-index: 6;
         color: white;
         width: 670px;

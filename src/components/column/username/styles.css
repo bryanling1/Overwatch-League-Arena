@@ -4,9 +4,10 @@
   }
 
   .username{
-    font-family: 'overwatch-numbers';
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+    font-family: 'Arial';
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     text-rendering: optimizeLegibility !important;
-    font-size: 40px;
+    font-size: 30px;
     text-transform: uppercase;
   }

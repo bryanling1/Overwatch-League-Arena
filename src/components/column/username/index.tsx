@@ -19,10 +19,14 @@ export default Username;
 
 const MainWrapper = styled.div`
     color: white;
-    position: absolute;
+    position: relative;
     z-index: 5;
     width: 70%;
     text-align: center;
+    margin-bottom: 5px;
+    min-height: 35.5px;
+    max-height: 35.5px;
+    overflow: hidden;
 `
 
 const DeathBlock = styled.div`

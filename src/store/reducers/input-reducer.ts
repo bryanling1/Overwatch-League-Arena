@@ -249,6 +249,39 @@ const inputReducer = (state:Input=dummyData, action:Action) =>{
                 }
             }
             return state
+        case ActionTypes.SetHealth:
+            if(
+                action.payload.column && 
+                action.payload.health && 
+                action.payload.type &&
+                action.payload.health >= 0 &&
+                action.payload.health <= 100 &&
+                action.payload.column >= 1 &&
+                action.payload.column <= 6 
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    let players = [...state.home.players];
+                    players[action.payload.column - 1].health = action.payload.health
+                    return {
+                        ...state,
+                        home:{
+                            players:[...players],
+                            team: state.home.team
+                        }
+                    }
+                }else{
+                    let players = [...state.away.players];
+                    players[action.payload.column - 1].health = action.payload.health;
+                    return {
+                        ...state,
+                        away:{
+                            players:[...players],
+                            team: state.away.team
+                        }
+                    }
+                }
+            }
+            return state;
         default:
             return state;
     }

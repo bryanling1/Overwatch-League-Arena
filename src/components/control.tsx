@@ -7,7 +7,7 @@ import * as actions from '../store/actions';
 import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 function mapStateToProps(state:StoreState){
     return {
@@ -75,6 +75,8 @@ const Control = (props:Props) =>{
                                         })
                                     }
                                 </select>
+                                <br/><br/>
+                                <Typography>Ult Charge</Typography>
                                 <SliderWrapper
                                     value={player.ultCharge}
                                     onChange={(e,nextValue)=>{
@@ -94,13 +96,22 @@ const Control = (props:Props) =>{
                                     }
                                     label="Alive"
                                 />
-                                <TextField
-                                    variant="outlined"
+                                <br/><br/>
+                                <Typography>Health</Typography>
+                                <SliderWrapper
+                                    value={player.health}
+                                    onChange={(e,nextValue)=>{
+                                        props.setHealth(props.type, i+1, nextValue as number);
+                                    }} 
+                                    aria-labelledby="continuous-slider"
+                                />
+                                    <br/><br/>
+                                <InputWrapper
                                     onChange={(e)=>{
                                         props.setUsername(props.type, i+1, e.target.value);
                                     }}
                                     value={player.username}
-                                    size="small"
+                                    placeholder="Username"
                                 />
                             </ColumnWrapper>
                         )
@@ -121,13 +132,17 @@ const MainWrapper = styled.div`
 `
 const ColumnWrapper = styled.div`
     display: inline-block;
-    max-width: 100px;
-    padding-left: 25px;
-    padding-right: 25px;
+    max-width: 130px;
+    padding-left: 15px;
+    padding-right: 15px;
 `
 
 const SliderWrapper = styled(({...props})=><Slider {...props}/>)`
     & {
         width: 100%;
     }
+`
+
+const InputWrapper = styled.input`
+    width: 100%;
 `

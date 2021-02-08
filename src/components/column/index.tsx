@@ -9,6 +9,7 @@ import {
 import HeroSkin from './hero-skin';
 import DeathTimer from './death-timer';
 import Username from './username';
+import Health from './health';
 
 interface StateProps{
     player: ColumnType;
@@ -18,8 +19,7 @@ interface StateProps{
 
 const Column = (props:StateProps) =>{
     const { player, team, column} = props;
-    const {hero, ultCharge, isAlive, username} = player;
-    // const {hero, ultCharge, isAlive, health, username} = player;
+    const {hero, ultCharge, isAlive, username, health} = player;
     return(
         <ColumnWrapper>
             <HiddenWrapper>
@@ -30,6 +30,7 @@ const Column = (props:StateProps) =>{
             <UltChargeWrapper>
                 <UltMeter percentage={ultCharge} column={column} player={player} team={team}/>
                 <Username username={username} isAlive={isAlive}/>
+                <Health health={health} isAlive={isAlive} column={column} hero={hero}/>
             </UltChargeWrapper>    
         </ColumnWrapper>
     )
@@ -68,7 +69,7 @@ const UltChargeWrapper = styled.div`
         justify-content: flex-end;
         align-items: center;
         position: absolute;
-        bottom: 100px;
+        bottom: 50px;
         left:0;
         flex-direction: column;
     }

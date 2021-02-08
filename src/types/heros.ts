@@ -67,3 +67,107 @@ export enum HeroUltIcons{
     zarya = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5d/Ability-zarya4.png',
     zenyatta = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5e/Ability-zenyatta4.png',
 }
+
+export enum HeroHealth{
+    dva = 'dva-health.svg',
+    orisa = 'orisa-health.svg',
+    reinhardt = 'reinhardt-health.svg',
+    roadhog = 'roadhog-health.svg',
+    sigma = 'sigma-health.svg',
+    winston = 'winston-health.svg',
+    ball = 'ball-health.svg',
+    zarya = 'zarya-health.svg',
+    ashe = 'ashe-health.svg',
+    bastion = 'bastion-health.svg',
+    doomfist = 'doomfist-health.svg',
+    echo = 'echo-health.svg',
+    genji = 'genji-health.svg',
+    hanzo = 'hanzo-health.svg',
+    junkrat = 'junkrat-health.svg',
+    mccree = 'mccree-health.svg',
+    mei = 'mei-health.svg',
+    pharah = 'pharah-health.svg',
+    reaper = 'reaper-health.svg',
+    soldier = 'soldier-health.svg',
+    sombra = 'sombra-health.svg',
+    symmetra = 'symmetra-health.svg',
+    torb = 'torb-health.svg',
+    tracer = 'tracer-health.svg',
+    widowmaker = 'widowmaker-health.svg',
+    ana = 'ana-health.svg',
+    baptiste = 'baptiste-health.svg',
+    brigitte = 'brigitte-health.svg',
+    lucio = 'lucio-health.svg',
+    mercy = 'mercy-health.svg',
+    moira = 'moira-health.svg',
+    zenyatta = 'zenyatta-health.svg',
+}
+
+export const getHeroHealth = (hero: Heros) =>{
+    switch(hero){
+        case Heros.dva:
+                return HeroHealth.dva;
+        case Heros.orisa:
+                return HeroHealth.orisa;
+        case Heros.reinhardt:
+                return HeroHealth.reinhardt;
+        case Heros.roadhog:
+                return HeroHealth.roadhog;
+        case Heros.sigma:
+                return HeroHealth.sigma;
+        case Heros.winston:
+                return HeroHealth.winston;
+        case Heros.ball:
+                return HeroHealth.ball;
+        case Heros.zarya:
+                return HeroHealth.zarya;
+        case Heros.ashe:
+                return HeroHealth.ashe;
+        case Heros.bastion:
+                return HeroHealth.bastion;
+        case Heros.doomfist:
+                return HeroHealth.doomfist;
+        case Heros.echo:
+                return HeroHealth.echo;
+        case Heros.genji:
+                return HeroHealth.genji;
+        case Heros.hanzo:
+                return HeroHealth.hanzo;
+        case Heros.junkrat:
+                return HeroHealth.junkrat;
+        case Heros.mccree:
+                return HeroHealth.mccree;
+        case Heros.mei:
+                return HeroHealth.mei;
+        case Heros.pharah:
+                return HeroHealth.pharah;
+        case Heros.reaper:
+                return HeroHealth.reaper;
+        case Heros.soldier:
+                return HeroHealth.soldier;
+        case Heros.sombra:
+                return HeroHealth.sombra;
+        case Heros.symmetra:
+                return HeroHealth.symmetra;
+        case Heros.torb:
+                return HeroHealth.torb;
+        case Heros.tracer:
+                return HeroHealth.tracer;
+        case Heros.widowmaker:
+                return HeroHealth.widowmaker;
+        case Heros.ana:
+                return HeroHealth.ana;
+        case Heros.baptiste:
+                return HeroHealth.baptiste;
+        case Heros.brigitte:
+                return HeroHealth.brigitte;
+        case Heros.lucio:
+                return HeroHealth.lucio;
+        case Heros.mercy:
+                return HeroHealth.mercy;
+        case Heros.moira:
+                return HeroHealth.moira;
+        case Heros.zenyatta:
+                return HeroHealth.zenyatta;
+    }
+}

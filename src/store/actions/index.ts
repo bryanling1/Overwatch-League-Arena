@@ -6,6 +6,7 @@ export enum ActionTypes{
     SetPercentage = "SET_PERCENTAGE",
     SetIsAlive = "SET_IS_ALIVE",
     SetUsername = "SET_USERNAME",
+    SetHealth = "SET_HEALTH",
 }
 
 export interface Payload{
@@ -16,6 +17,7 @@ export interface Payload{
     percentage?: number;
     isAlive?: boolean;
     username?: string;
+    health?: number;
 }
 
 export interface Action{
@@ -66,6 +68,17 @@ export const setUsername = (type: TeamTypes, column:number, username:string):Act
             type,
             column,
             username
+        }
+    }
+}
+
+export const setHealth = (type: TeamTypes, column:number, health:number):Action=>{
+    return{
+        type: ActionTypes.SetHealth,
+        payload:{
+            type,
+            column,
+            health
         }
     }
 }

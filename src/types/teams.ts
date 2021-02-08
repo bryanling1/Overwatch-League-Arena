@@ -49,6 +49,46 @@ export const getRingColor = (team:Teams):string =>{
     switch(team){
         case Teams.dynasty:
             return TeamColors[key][2];
+        case Teams.reign:
+            return TeamColors[key][1];
+        case Teams.uprising:
+            return TeamColors[key][2];
+        case Teams.hunters:
+            return 'white'
+        case Teams.fuel:
+            return TeamColors[key][1];
+        case Teams.mayhem:
+            return TeamColors[key][2];
+        case Teams.charge:
+            return TeamColors[key][1];
+        case Teams.spark:
+            return TeamColors[key][2];
+        case Teams.outlaws:
+            return TeamColors[key][2];
+        case Teams.spitfire:
+            return 'white'
+        case Teams.gladiators:
+            return 'white'
+        case Teams.valiant:
+            return TeamColors[key][0];
+        case Teams.excelsior:
+            return TeamColors[key][1];
+        case Teams.eternal:
+            return TeamColors[key][2];
+        case Teams.fusion:
+            return TeamColors[key][1];
+        case Teams.shock:
+            return 'white';
+        case Teams.dragons:
+            return TeamColors[key][2];
+        case Teams.defiant:
+            return TeamColors[key][1];
+        case Teams.titans:
+            return TeamColors[key][1];
+        case Teams.justice:
+            return TeamColors[key][2];
+        
+        
         default:
             return 'black';
     }
@@ -59,6 +99,45 @@ export const getGradientColor = (team:Teams):string =>{
     switch(team){
         case Teams.dynasty:
             return TeamColors[key][1];
+        case Teams.reign:
+            return TeamColors[key][2];
+        case Teams.uprising:
+            return TeamColors[key][0];
+        case Teams.hunters:
+            return TeamColors[key][0];
+        case Teams.fuel:
+            return TeamColors[key][0];
+        case Teams.mayhem:
+            return TeamColors[key][0];
+        case Teams.charge:
+            return TeamColors[key][0];
+        case Teams.spark:
+            return TeamColors[key][0];
+        case Teams.outlaws:
+            return TeamColors[key][0];
+        case Teams.spitfire:
+            return TeamColors[key][0];
+        case Teams.gladiators:
+            return TeamColors[key][0];
+        case Teams.valiant:
+            return TeamColors[key][1];
+        case Teams.excelsior:
+            return TeamColors[key][0];
+        case Teams.eternal:
+            return TeamColors[key][0];
+        case Teams.fusion:
+            return TeamColors[key][0];
+        case Teams.shock:
+            return TeamColors[key][1];
+        case Teams.justice:
+            return TeamColors[key][0];
+        case Teams.defiant:
+            return TeamColors[key][0];
+        case Teams.titans:
+            return TeamColors[key][0];
+        case Teams.dragons:
+            return TeamColors[key][0];
+        
         default:
             return 'black';
     }
