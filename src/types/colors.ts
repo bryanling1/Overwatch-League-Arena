@@ -1,3 +1,3 @@
 export enum TeamGradients{
-    dynasty = "black",
+    dynasty = "red",
 }

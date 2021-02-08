@@ -1,0 +1,149 @@
+.pie__container{
+    width: 200px;
+    height: 200px;
+    position: relative;
+  }
+  #mask{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+  .pie__container--chart{
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  .pie__container--chart svg {
+    width: 100%; 
+    height: 100%;
+    transform: rotate(-90deg);
+    border-radius: 50%;
+  }
+  
+  .pie__container--chart circle {
+    fill: rgba(255, 255, 255, 0.0);
+    stroke-width: 32;
+    stroke-dasharray: 0 100; 
+    transition: stroke-dasharray .5s ease;
+  }
+  
+  
+  .pie__container--percent {
+    position:absolute;
+    right:18%;
+    top:22%;
+    font-size: 32px;
+    color: #ffffff;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  
+  .clip-svg {
+    clip-path: url(#myClip);
+    width: 100%;
+  }
+  
+  #smaller-ring{
+    transform: scale(0.62);
+    position: absolute;
+  }
+  
+  .number{
+    position: absolute;
+  }
+  /*colors*/
+  #background-ring > path{
+    fill: rgba(200, 200, 200, 0.4);
+  }
+  
+  /* .ring-color{
+    fill: blue !important;
+  }
+  
+  .ring-color-stroke{
+    stroke: blue !important;
+  } */
+  
+  .number{
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+    font-size: 80px;
+    font-weight: bold;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+  }
+  
+  .pie__container{
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}
+
+  .ult-icon{
+    width: 220px;
+    height: 220px;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    background-image: url(https://static.wikia.nocookie.net/overwatch_gamepedia/images/5/5e/Ability-zenyatta4.png);
+    background-repeat: no-repeat;
+    background-size: 65%;
+    background-position: center center;
+    border-radius: 100%;
+  }
+  .character{
+    width: 690px;  height:388px; 
+    position: absolute;
+    top: 0px;
+    left: 25px;
+    transform: scale(3.1);
+    z-index: 4;
+    opacity: 0;
+  }
+
+  .character1 {
+    background: url(https://i.ibb.co/YPFCNC8/spritesheet-11.png);
+  }
+  
+  .character2 {
+    background: url(https://i.ibb.co/H2JZFF2/spritesheet-7.png);
+  }
+  
+  .character3{
+    background: url(https://i.ibb.co/zh2pSWR/spritesheet-8.png);
+  }
+  
+  .character4{
+    background: url(https://i.ibb.co/nCXHYtL/spritesheet-10.png);
+  }
+
+  
+  @font-face {
+    font-family: 'overwatch-numbers';
+    src: url('../../../fonts/steelfish eb it.ttf') format('truetype'); /* Modern Browsers */
+  }
+
+  .number{
+    font-family: 'overwatch-numbers';
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+    text-rendering: optimizeLegibility !important;
+    margin-top: -5px;
+    margin-left: -5px;
+    font-size: 80px;
+  }
+  .number-percentage{
+    font-family: sans-serif;
+    position: absolute;
+    font-style: italic;
+    font-weight: bold;
+    right: 55px;
+    bottom: 70px;
+    font-size: 25px;
+    z-index: 5;
+  }

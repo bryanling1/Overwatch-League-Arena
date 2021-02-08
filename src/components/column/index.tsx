@@ -1,26 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 import Gradient from './gradient';
+import UltMeter from './ult-meter';
 import {
-    TeamGradients, 
     Column as ColumnType, 
     Teams, 
 } from '../../types';
 import HeroSkin from './hero-skin';
+import DeathTimer from './death-timer';
+import Username from './username';
+import Health from './health';
 
 interface StateProps{
     player: ColumnType;
     team: Teams;
+    column: number;
 };
 
 const Column = (props:StateProps) =>{
-    const { player, team } = props;
-    const {hero} = player;
-    // const {hero, ultCharge, isAlive, health, username} = player;
+    const { player, team, column} = props;
+    const {hero, ultCharge, isAlive, username, health} = player;
     return(
         <ColumnWrapper>
-            <Gradient color={TeamGradients.dynasty}/>
-            <HeroSkin team={team} hero={hero}/>
+            <HiddenWrapper>
+                <DeathTimer isAlive={isAlive} column={column}/>
+                <Gradient team={team}/>
+                <HeroSkin team={team} hero={hero} isAlive={isAlive}/>
+            </HiddenWrapper>
+            <UltChargeWrapper>
+                <UltMeter percentage={ultCharge} column={column} player={player} team={team}/>
+                <Username username={username} isAlive={isAlive}/>
+                <Health health={health} isAlive={isAlive} column={column} hero={hero}/>
+            </UltChargeWrapper>    
         </ColumnWrapper>
     )
 }
@@ -31,11 +42,36 @@ const ColumnWrapper = styled.div`
     & {
         height: 100vh;
         min-height: 100vh;
-        width: ${100/6}%;
+        width: ${100/6 - 0.4}%;
         background-size: cover;
         position: relative;
+        background-color: white;
+    }
+`
+
+const HiddenWrapper = styled.div`
+    & {
+        height: 100%;
+        width: 100%;
+        position: relative;
         overflow: hidden;
-        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+`
+
+const UltChargeWrapper = styled.div`
+    & {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        bottom: 50px;
+        left:0;
+        flex-direction: column;
     }
 `
 

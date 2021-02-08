@@ -30,7 +30,7 @@ const dummyData:Input = {
             {
                 hero: Heros.widowmaker,
                 ultCharge: 50,
-                isAlive: false,
+                isAlive: true,
                 health: 100,
                 username:"player 4",
             },
@@ -109,11 +109,25 @@ const inputReducer = (state:Input=dummyData, action:Action) =>{
                 action.payload.column <= 6 
             ){
                 if(action.payload.type === TeamTypes.home){
-                    state.home.players[action.payload.column - 1].hero = action.payload.hero;
-                    return state;
+                    let players = [...state.home.players];
+                    players[action.payload.column - 1].hero = action.payload.hero;
+                    return {
+                        ...state,
+                        home:{
+                            players:[...players],
+                            team: state.home.team
+                        }
+                    }
                 }else{
-                    state.away.players[action.payload.column - 1].hero = action.payload.hero;
-                    return state;
+                    let players = [...state.away.players];
+                    players[action.payload.column - 1].hero = action.payload.hero;
+                    return {
+                        ...state,
+                        away:{
+                            players:[...players],
+                            team: state.away.team
+                        }
+                    }
                 }
             }
             return state;
@@ -122,11 +136,149 @@ const inputReducer = (state:Input=dummyData, action:Action) =>{
                 action.payload.team
             ){
                 if(action.payload.type === TeamTypes.home){
-                    state.home.team = action.payload.team;
-                    return state;
+                    return {
+                        ...state,
+                        home:{
+                            team: action.payload.team,
+                            players: [...state.home.players]
+                        }
+                    };
                 }else{
-                    state.away.team = action.payload.team;;
-                    return state;
+                    return {
+                        ...state,
+                        away:{
+                            team: action.payload.team,
+                            players: [...state.away.players]
+                        }
+                    };
+                }
+            }
+            return state;
+        case ActionTypes.SetPercentage:
+            if(
+                action.payload.column && 
+                action.payload.percentage && 
+                action.payload.type &&
+                action.payload.percentage >= 0 &&
+                action.payload.percentage <= 100 &&
+                action.payload.column >= 1 &&
+                action.payload.column <= 6 
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    let players = [...state.home.players];
+                    players[action.payload.column - 1].ultCharge = action.payload.percentage;
+                    return {
+                        ...state,
+                        home:{
+                            players:[...players],
+                            team: state.home.team
+                        }
+                    }
+                }else{
+                    let players = [...state.away.players];
+                    players[action.payload.column - 1].ultCharge = action.payload.percentage;
+                    return {
+                        ...state,
+                        away:{
+                            players:[...players],
+                            team: state.away.team
+                        }
+                    }
+                }
+            }
+            return state;
+        case ActionTypes.SetIsAlive:
+            if(
+                action.payload.column && 
+                action.payload.type &&
+                action.payload.isAlive !== undefined &&
+                action.payload.column >= 1 &&
+                action.payload.column <= 6 
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    let players = [...state.home.players];
+                    players[action.payload.column - 1].isAlive = action.payload.isAlive;
+                    return {
+                        ...state,
+                        home:{
+                            players:[...players],
+                            team: state.home.team
+                        }
+                    }
+                }else{
+                    let players = [...state.away.players];
+                    players[action.payload.column - 1].isAlive = action.payload.isAlive;
+                    return {
+                        ...state,
+                        away:{
+                            players:[...players],
+                            team: state.away.team
+                        }
+                    }
+                }
+            }
+            return state
+        case ActionTypes.SetUsername:
+            if(
+                action.payload.column && 
+                action.payload.type &&
+                action.payload.username !== undefined &&
+                action.payload.column >= 1 &&
+                action.payload.column <= 6 
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    let players = [...state.home.players];
+                    players[action.payload.column - 1].username = action.payload.username;
+                    return {
+                        ...state,
+                        home:{
+                            players:[...players],
+                            team: state.home.team
+                        }
+                    }
+                }else{
+                    let players = [...state.away.players];
+                    players[action.payload.column - 1].username = action.payload.username;
+                    return {
+                        ...state,
+                        away:{
+                            players:[...players],
+                            team: state.away.team
+                        }
+                    }
+                }
+            }
+            return state
+        case ActionTypes.SetHealth:
+            if(
+                action.payload.column && 
+                action.payload.health && 
+                action.payload.type &&
+                action.payload.health >= 0 &&
+                action.payload.health <= 100 &&
+                action.payload.column >= 1 &&
+                action.payload.column <= 6 
+            ){
+                if(action.payload.type === TeamTypes.home){
+                    let players = [...state.home.players];
+                    players[action.payload.column - 1].health = action.payload.health
+                    return {
+                        ...state,
+                        home:{
+                            players:[...players],
+                            team: state.home.team
+                        }
+                    }
+                }else{
+                    let players = [...state.away.players];
+                    players[action.payload.column - 1].health = action.payload.health;
+                    return {
+                        ...state,
+                        away:{
+                            players:[...players],
+                            team: state.away.team
+                        }
+                    }
                 }
             }
             return state;

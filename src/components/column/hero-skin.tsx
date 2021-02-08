@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {
     Teams, 
     Heros
@@ -35,16 +35,19 @@ import Winston from './heroes/winston';
 import Zarya from './heroes/zarya';
 import Zenyatta from './heroes/zenyatta';
 import Widowmaker from './heroes/widowmaker';
+import styled from 'styled-components';
 
 interface StateProps{
     hero: Heros;
     team: Teams;
+    isAlive: boolean;
 };
 
 const HeroSkin = (props:StateProps) =>{
-    const {team, hero} = props;
+    const {team, hero, isAlive} = props;
     return(
-        <Fragment>
+        <MainWrapper >
+            <BlackFade style={{opacity: isAlive?0:1}}/>
             {/* HEROS*/}
             { hero === Heros.widowmaker  && <Widowmaker team={team}/>}
             { hero === Heros.winston  && <Winston team={team}/>}
@@ -78,10 +81,29 @@ const HeroSkin = (props:StateProps) =>{
             { hero === Heros.sombra && <Sombra team={team}/>}
             { hero === Heros.symmetra && <Symmetra team={team}/>}
             { hero === Heros.torb && <Torb team={team}/>}
-        </Fragment>
+        </MainWrapper>
     )
 }
 
 export default HeroSkin;
 
+const MainWrapper = styled.div`
+     {
+        transition: ease opacity 0.4s;
+    }
+`
+
+const BlackFade = styled.div`
+    {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left:0;
+        transition: ease opacity 0.3s;
+        pointer-events: none;
+    }
+`
 

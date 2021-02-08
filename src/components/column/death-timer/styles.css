@@ -1,0 +1,48 @@
+.death-ring-container{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform: scale(1.2);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .death-ring{
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  .death-ring svg {
+    width: 100%; 
+    height: 100%;
+    transform: rotate(-90deg);
+    border-radius: 50%;
+  }
+  
+  .death-ring circle {
+    fill: rgba(255, 255, 255, 0);
+    stroke: white;
+    stroke-width: 3px;
+    stroke-dasharray: 0 100; 
+    /* transition: stroke-dasharray .5s ease; */
+    position: relative;
+    z-index: 6;
+   
+  }
+
+  .death-ring #back {
+    stroke-dasharray: none;
+    stroke: rgba(255, 255, 255, 0.3);
+    z-index: 5;
+    position: relative;
+  }
+
+  .red-skull{
+    width: 100px;
+    fill: red;
+    position: absolute;
+  }
+  
+  
+  

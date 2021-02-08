@@ -1,110 +1,89 @@
-import React from 'react';
+import React, {Fragment, useState} from 'react';
 import Team from '../team';
-import {Input, Teams, Heros, TeamTypes} from '../../types';
+import {TeamTypes} from '../../types';
+import {connect, ConnectedProps} from 'react-redux';
+import {StoreState} from '../../store/reducers';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import Draggable from 'react-draggable';
+import Paper from '@material-ui/core/Paper';
+import Control from '../control';
+import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
 
-interface PropState{
+function mapStateToProps(state:StoreState){
+    return{
+        input:state.inputReducer
+    }
+}
+
+const connector = connect(mapStateToProps)
+
+interface StateProps{
     type: TeamTypes
 }
 
-const Display = (props:PropState) =>{
-    const dummyData:Input = {
-        winner: undefined,
-        home:{
-            team: Teams.dynasty,
-            players:[
-                {
-                    hero: Heros.symmetra,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 1",
-                },
-                {
-                    hero: Heros.torb,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 2",
-                },
-                {
-                    hero: Heros.tracer,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 3",
-                },
-                {
-                    hero: Heros.widowmaker,
-                    ultCharge: 50,
-                    isAlive: false,
-                    health: 100,
-                    username:"player 4",
-                },
-                {
-                    hero: Heros.winston,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 5",
-                },
-                {
-                    hero: Heros.zarya,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 6",
-                },
-            ]
-        },
-        away:{
-            team: Teams.dynasty,
-            players:[
-                {
-                    hero: Heros.zenyatta,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 1",
-                },
-                {
-                    hero: Heros.zarya,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 2",
-                },
-                {
-                    hero: Heros.reaper,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 3",
-                },
-                {
-                    hero: Heros.reinhardt,
-                    ultCharge: 50,
-                    isAlive: false,
-                    health: 100,
-                    username:"player 4",
-                },
-                {
-                    hero: Heros.ana,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 5",
-                },
-                {
-                    hero: Heros.mccree,
-                    ultCharge: 50,
-                    isAlive: true,
-                    health: 100,
-                    username:"player 6",
-                },
-            ]
-        }
-    }
-    return(<Team input={dummyData} type={props.type}/>)
+type ReduxProps = ConnectedProps<typeof connector>
+
+type Props = StateProps & ReduxProps
+
+const PaperComponent = (props:any) => {
+    return (
+      <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+        <Paper {...props} />
+      </Draggable>
+    );
+  }
+
+const Display = (props:Props) =>{
+    const [open, setOpen] = useState(true);
+
+    const handleOpen = () => setOpen(true);
+    return(
+        <Fragment>
+            <ButtonWrapper onClick={handleOpen}>Open Controls</ButtonWrapper>
+            <DialogWrapper 
+                open={open}
+                PaperComponent={PaperComponent} 
+                aria-labelledby="draggable-dialog-title"
+                onClose={()=>{setOpen(false)}}
+            >
+                <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                    
+                </DialogTitle>
+                <DialogContent>
+                    <Control type={props.type}/>
+                </DialogContent>
+            </DialogWrapper>
+            <Team input={props.input} type={props.type}/>
+        </Fragment>
+    )
 }
 
-export default Display;
+export default connector(Display);
+
+const DialogWrapper = styled(({...props})=><Dialog {...props}/>)`
+    && .MuiPaper-root {
+        max-width: none; 
+    }
+
+    && >  .MuiBackdrop-root {
+        background-color: transparent;
+        min-width: none;
+    }
+`
+
+const ButtonWrapper = styled(({...props})=><Button {...props}/>)`
+    && {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        opacity: 0;
+    }
+    &&:hover {
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+`
