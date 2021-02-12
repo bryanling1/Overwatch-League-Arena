@@ -1,4 +1,4 @@
-import {TeamTypes, Heros, Teams} from '../../types';
+import {TeamTypes, Heros, Teams, Winner} from '../../types';
 
 export enum ActionTypes{
     SwitchHero = "SWITCH_HERO",
@@ -7,6 +7,7 @@ export enum ActionTypes{
     SetIsAlive = "SET_IS_ALIVE",
     SetUsername = "SET_USERNAME",
     SetHealth = "SET_HEALTH",
+    SetWinner = "SET_WINNER",
 }
 
 export interface Payload{
@@ -18,6 +19,7 @@ export interface Payload{
     isAlive?: boolean;
     username?: string;
     health?: number;
+    winner?: Winner;
 }
 
 export interface Action{
@@ -79,6 +81,15 @@ export const setHealth = (type: TeamTypes, column:number, health:number):Action=
             type,
             column,
             health
+        }
+    }
+}
+
+export const setWinner = (winner:Winner):Action=>{
+    return{
+        type: ActionTypes.SetWinner,
+        payload:{
+            winner
         }
     }
 }

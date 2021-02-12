@@ -42,6 +42,7 @@ const Control = (props:Props) =>{
 
     const defaultValueTeam = props.type === TeamTypes.home ? input.home.team : input.away.team;
 
+    console.log(input.winner === TeamTypes[props.type.toLowerCase()])
     return(
     <MainWrapper>
         <div>      
@@ -55,7 +56,21 @@ const Control = (props:Props) =>{
                         })
                     }
                 </select>
-            </div><br/>
+            </div>
+            <div>
+            <FormControlLabel
+                control={
+                <Switch
+                    checked={input.winner !== '' && input.winner === TeamTypes[props.type.toLowerCase()]}
+                    onChange={(e)=>{
+                        props.setWinner(e.target.checked ? props.type : '')
+                    }}
+                    color="primary"
+                />
+                }
+                label="Winner"
+            />
+            </div>
             <div>
                 {
                     props.input[props.type.toLowerCase()].players.map((player, i)=>{

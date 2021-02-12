@@ -14,7 +14,7 @@ export enum TeamTypes{
     away = "AWAY",
 }
 
-export type Winner= TeamTypes | undefined;
+export type Winner= TeamTypes | '';
 
 export interface Input{
     winner: Winner;

@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import Control from '../control';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import Winner from '../winner';
 
 function mapStateToProps(state:StoreState){
     return{
@@ -56,6 +57,7 @@ const Display = (props:Props) =>{
                     <Control type={props.type}/>
                 </DialogContent>
             </DialogWrapper>
+            <Winner/>
             <Team input={props.input} type={props.type}/>
         </Fragment>
     )

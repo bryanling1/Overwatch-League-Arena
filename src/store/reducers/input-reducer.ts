@@ -2,7 +2,7 @@ import {Input, Teams, Heros, TeamTypes} from '../../types';
 import { ActionTypes, Action } from '../actions';
 
 const dummyData:Input = {
-    winner: undefined,
+    winner: '',
     home:{
         team: Teams.dynasty,
         players:[
@@ -279,6 +279,14 @@ const inputReducer = (state:Input=dummyData, action:Action) =>{
                             team: state.away.team
                         }
                     }
+                }
+            }
+            return state;
+        case ActionTypes.SetWinner:
+            if(action.payload.winner !== undefined){
+                return{
+                    ...state,
+                    winner: action.payload.winner
                 }
             }
             return state;
