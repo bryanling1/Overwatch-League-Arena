@@ -142,3 +142,98 @@ export const getGradientColor = (team:Teams):string =>{
             return 'black';
     }
 }
+
+export const getWinnerColors = (team:Teams):[string, string] =>{
+    const key = team ? team.toLowerCase() : '';
+    switch(team){
+        case Teams.dynasty:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.reign:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.uprising:
+            return [TeamColors[key][2], TeamColors[key][0]];
+        case Teams.hunters:
+            return [TeamColors[key][2], TeamColors[key][0]];
+        case Teams.fuel:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.mayhem:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.charge:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.spark:
+            return [TeamColors[key][2], TeamColors[key][0]];
+        case Teams.outlaws:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.spitfire:
+            return [TeamColors[key][2], TeamColors[key][0]];
+        case Teams.gladiators:
+            return [TeamColors[key][2], TeamColors[key][0]];
+        case Teams.valiant:
+            return [TeamColors[key][0], TeamColors[key][1]];
+        case Teams.excelsior:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.eternal:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.fusion:
+            return [TeamColors[key][0], TeamColors[key][1]];
+        case Teams.shock:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.justice:
+            return [TeamColors[key][2], TeamColors[key][0]];
+        case Teams.defiant:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.titans:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        case Teams.dragons:
+            return [TeamColors[key][1], TeamColors[key][0]];
+        default:
+            return ['yellow', 'black']
+    }
+}
+
+export const getTeamLogo = (team:Teams):string =>{
+    switch(team){
+        case Teams.dynasty:
+            return 'images/logos/dynasty.png';
+        case Teams.reign:
+            return 'images/logos/reign.png';
+        case Teams.uprising:
+            return 'images/logos/uprising.png';
+        case Teams.hunters:
+            return 'images/logos/hunters.png';
+        case Teams.fuel:
+            return 'images/logos/fuel.png';
+        case Teams.mayhem:
+            return 'images/logos/mayhem.png';
+        case Teams.charge:
+            return 'images/logos/charge.png';
+        case Teams.spark:
+            return 'images/logos/spark.png';
+        case Teams.outlaws:
+            return 'images/logos/outlaws.png';
+        case Teams.spitfire:
+            return 'images/logos/spitfire.png';
+        case Teams.gladiators:
+            return 'images/logos/gladiators.png';
+        case Teams.valiant:
+            return 'images/logos/valiant.png';
+        case Teams.excelsior:
+            return 'images/logos/excelsior.png';
+        case Teams.eternal:
+            return 'images/logos/eternal.png';
+        case Teams.fusion:
+            return 'images/logos/fusion.png';
+        case Teams.shock:
+            return 'images/logos/shock.png';
+        case Teams.justice:
+            return 'images/logos/justice.png';
+        case Teams.defiant:
+            return 'images/logos/defiant.png';
+        case Teams.titans:
+            return 'images/logos/titans.png';
+        case Teams.dragons:
+            return 'images/logos/dragons.png';
+        default:
+            return 'images/logos/dynasty.png'
+    }
+}

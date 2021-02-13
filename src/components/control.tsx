@@ -42,7 +42,6 @@ const Control = (props:Props) =>{
 
     const defaultValueTeam = props.type === TeamTypes.home ? input.home.team : input.away.team;
 
-    console.log(input.winner === TeamTypes[props.type.toLowerCase()])
     return(
     <MainWrapper>
         <div>      
