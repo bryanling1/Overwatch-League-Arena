@@ -1,0 +1,28 @@
+name: owlarena_server
+channels:
+  - defaults
+dependencies:
+  - ca-certificates=2021.1.19=haa95532_0
+  - certifi=2020.12.5=py38haa95532_0
+  - openssl=1.1.1i=h2bbff1b_0
+  - pip=20.3.3=py38haa95532_0
+  - python=3.8.5=h5fd99cc_1
+  - setuptools=52.0.0=py38haa95532_0
+  - sqlite=3.33.0=h2a8f88b_0
+  - vc=14.2=h21ff451_1
+  - vs2015_runtime=14.27.29016=h5e58377_2
+  - wheel=0.36.2=pyhd3eb1b0_0
+  - wincertstore=0.2=py38_0
+  - zlib=1.2.11=h62dcd97_4
+  - pip:
+    - bidict==0.21.2
+    - click==7.1.2
+    - flask==1.1.2
+    - flask-socketio==5.0.1
+    - itsdangerous==1.1.0
+    - jinja2==2.11.3
+    - markupsafe==1.1.1
+    - python-engineio==4.0.0
+    - python-socketio==5.0.4
+    - werkzeug==1.0.1
+prefix: C:\Users\Bryan\miniconda3\envs\owlarena_server
