@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Column from './column';
 import {Input, TeamTypes} from '../types';
-// import UltMeter from './ult-meter';
 
 interface PropState{
     input: Input;
@@ -14,11 +13,6 @@ const Team = (props:PropState) =>{
     const team = type === TeamTypes.home ? input.home.team : input.away.team;
     return(
         <TeamWrapper>
-            {/* {
-                players.map((player, i)=>{
-                    return <UltMeter percentage={player.ultCharge} i={i}/>
-                })
-            } */}
             {
                 players.map((player, i)=>{
                     return <Column key={i} player={player} team={team} column={i}/>

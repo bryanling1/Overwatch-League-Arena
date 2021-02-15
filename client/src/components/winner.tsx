@@ -1,21 +1,13 @@
-import {connect, ConnectedProps} from 'react-redux';
+import {Input} from '../types';
 import {getWinnerColors, getTeamLogo} from '../types';
-import {StoreState} from '../store/reducers';
 import React from 'react';
 import styled from 'styled-components';
 
-function mapStateToProps(state:StoreState){
-    return {
-        input:state.inputReducer
-    }
+interface WinnerProps{
+    input: Input
 }
-const connector = connect(mapStateToProps);
 
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-type Props = PropsFromRedux;
-
-const Winner = (props:Props) =>{
+const Winner = (props:WinnerProps) =>{
     return(
         <WinnerWrapper>
             <FirstIn 
@@ -32,7 +24,7 @@ const Winner = (props:Props) =>{
     )
 }
 
-export default connector(Winner); 
+export default Winner; 
 
 const WinnerWrapper = styled.div`
     position: absolute;

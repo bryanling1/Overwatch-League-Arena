@@ -50,14 +50,12 @@ const Display = (props:Props) =>{
                 aria-labelledby="draggable-dialog-title"
                 onClose={()=>{setOpen(false)}}
             >
-                <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                    
-                </DialogTitle>
+                <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title"/>
                 <DialogContent>
                     <Control type={props.type}/>
                 </DialogContent>
             </DialogWrapper>
-            <Winner/>
+            <Winner input={props.input}/>
             <Team input={props.input} type={props.type}/>
         </Fragment>
     )
