@@ -8,10 +8,12 @@ import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
+import Checkbox from '@material-ui/core/Checkbox';
 
 function mapStateToProps(state:StoreState){
     return {
-        input:state.inputReducer
+        input:state.inputReducer,
+        socket:state.socketReducer.socket
     }
 }
 
@@ -45,8 +47,8 @@ const Control = (props:Props) =>{
     return(
     <MainWrapper>
         <div>      
-            <div>
-                <select defaultValue={defaultValueTeam} onChange={handleChangeTeam}>
+            <FormHeader>
+                <select defaultValue={defaultValueTeam} onChange={handleChangeTeam} disabled={props.socket}>
                     {
                         Object.values(Teams).sort().map(team=>{
                             return (
@@ -55,7 +57,19 @@ const Control = (props:Props) =>{
                         })
                     }
                 </select>
-            </div>
+                <SocketInputWrapper>
+                <FormControlLabel
+                    control={
+                    <Checkbox
+                        checked={props.socket}
+                        onChange={()=>{props.socket ? props.setSocketOff() : props.setSocketOn()}}
+                        color="primary"
+                    />
+                    }
+                    label="Listen to socket"
+                />
+                </SocketInputWrapper>
+            </FormHeader>
             <div>
             <FormControlLabel
                 control={
@@ -68,6 +82,7 @@ const Control = (props:Props) =>{
                 />
                 }
                 label="Winner"
+                disabled={props.socket}
             />
             </div>
             <div>
@@ -80,6 +95,7 @@ const Control = (props:Props) =>{
                                     onChange={(e)=>{
                                         props.switchHero(props.type, i+1, e.target.value as Heros);
                                     }}
+                                    disabled={props.socket}
                                 >
                                     {
                                         Object.values(Heros).sort().map(hero=>{
@@ -96,9 +112,11 @@ const Control = (props:Props) =>{
                                     onChange={(e,nextValue)=>{
                                         props.setPercentage(props.type, i+1, nextValue as number);
                                     }} 
-                                    aria-labelledby="continuous-slider" /
-                                >
+                                    aria-labelledby="continuous-slider" 
+                                    disabled={props.socket}
+                                />
                                 <FormControlLabel
+                                    disabled={props.socket}
                                     control={
                                     <Switch
                                         checked={player.isAlive}
@@ -113,6 +131,7 @@ const Control = (props:Props) =>{
                                 <br/><br/>
                                 <Typography>Health</Typography>
                                 <SliderWrapper
+                                    disabled={props.socket}
                                     value={player.health}
                                     onChange={(e,nextValue)=>{
                                         props.setHealth(props.type, i+1, nextValue as number);
@@ -121,6 +140,7 @@ const Control = (props:Props) =>{
                                 />
                                     <br/><br/>
                                 <InputWrapper
+                                    disabled={props.socket}
                                     onChange={(e)=>{
                                         props.setUsername(props.type, i+1, e.target.value);
                                     }}
@@ -143,6 +163,7 @@ export default connector(Control);
 
 const MainWrapper = styled.div`
     display: flex;
+    position: relative;
 `
 const ColumnWrapper = styled.div`
     display: inline-block;
@@ -159,4 +180,14 @@ const SliderWrapper = styled(({...props})=><Slider {...props}/>)`
 
 const InputWrapper = styled.input`
     width: 100%;
+`
+
+const SocketInputWrapper = styled.div`
+    position: absolute;
+    top:-10px;
+    right:0;
+`
+
+const FormHeader = styled.div`
+    position: relative;
 `

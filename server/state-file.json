@@ -1,0 +1,97 @@
+{
+    "winner": "",
+    "home":{
+        "team": "OUTLAWS",
+        "players":[
+            {
+                "hero": "SYMMTERA",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 1"
+            },
+            {
+                "hero": "TORB",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 2"
+            },
+            {
+                "hero": "TRACER",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 3"
+            },
+            {
+                "hero": "WIDOWMAKTER",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 4"
+            },
+            {
+                "hero": "WINSTON",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 5"
+            },
+            {
+                "hero": "ZARYA",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 6"
+            }
+        ]
+    },
+    "away":{
+        "team": "EXCELSIOR",
+        "players":[
+            {
+                "hero": "SYMMTERA",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 1"
+            },
+            {
+                "hero": "TORB",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 2"
+            },
+            {
+                "hero": "TRACER",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 3"
+            },
+            {
+                "hero": "WIDOWMAKTER",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 4"
+            },
+            {
+                "hero": "WINSTON",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 5"
+            },
+            {
+                "hero": "ZARYA",
+                "ultCharge": 50,
+                "isAlive": true,
+                "health": 100,
+                "username":"player 6"
+            }
+        ]
+    }
+}

@@ -93,3 +93,19 @@ export const setWinner = (winner:Winner):Action=>{
         }
     }
 }
+
+export enum SocketActionTypes{
+    socketOn = "SOCKET_ON",
+    socketOff = "SOCKET_OFF"
+}
+export const setSocketOn = ():SocketAction => {
+    return {type: SocketActionTypes.socketOn}
+}
+
+export const setSocketOff = ():SocketAction => {
+    return {type: SocketActionTypes.socketOff}
+}
+
+export interface SocketAction{
+    type: SocketActionTypes
+}

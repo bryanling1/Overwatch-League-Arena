@@ -1,4 +1,5 @@
-import React, {Fragment, useState} from 'react';
+import {io} from 'socket.io-client';
+import React, {Fragment, useState, useEffect, useMemo} from 'react';
 import Team from '../team';
 import {TeamTypes} from '../../types';
 import {connect, ConnectedProps} from 'react-redux';
@@ -15,7 +16,8 @@ import Winner from '../winner';
 
 function mapStateToProps(state:StoreState){
     return{
-        input:state.inputReducer
+        input:state.inputReducer,
+        socket:state.socketReducer.socket
     }
 }
 
@@ -39,6 +41,15 @@ const PaperComponent = (props:any) => {
 
 const Display = (props:Props) =>{
     const [open, setOpen] = useState(true);
+    const [socketInput, setSocketInput] = useState();
+    const socket = useMemo(()=>io('http://127.0.0.1:5000'), []);
+
+    useEffect(()=>{
+        socket.on('owlarena', (data)=>{
+            setSocketInput(data);
+        })
+    }, [socket])
+    
 
     const handleOpen = () => setOpen(true);
     return(
@@ -55,8 +66,10 @@ const Display = (props:Props) =>{
                     <Control type={props.type}/>
                 </DialogContent>
             </DialogWrapper>
-            <Winner input={props.input}/>
-            <Team input={props.input} type={props.type}/>
+            {props.socket && socketInput && <Winner input={socketInput}/>}
+            {!props.socket && <Winner input={props.input}/>}
+            {props.socket && socketInput && <Team input={socketInput} type={props.type}/>}
+            {!props.socket && <Team input={props.input} type={props.type}/>}
         </Fragment>
     )
 }
