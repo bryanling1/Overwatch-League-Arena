@@ -1,7 +1,10 @@
 import cv2
 import numpy as np
+import os
+import tensorflow as tf
 
 class OwlVision:
+    numberModel =  tf.keras.models.load_model("./models/numbersModel.h5")
     frameWidth = 150
     frameHeight = 200
     frameStartPoints=[
@@ -20,7 +23,8 @@ class OwlVision:
         [1650, 32],
         [1740, 32],
     ]
-    threshold = 0.8
+    threshold = 0.7
+    NUMBER_THRESHOLD = 0.79
     HEALTH_Y = 185
     healthStartPoitns=[
         [40, HEALTH_Y],
@@ -65,11 +69,11 @@ class OwlVision:
     YELLOW_VAL_MIN = 156
     YELLOW_VAL_MAX = 249
 
-    RED_HUE_MIN = 170
-    RED_HUE_MAX = 179
-    RED_SAT_MIN = 81
-    RED_SAT_MAX = 244
-    RED_VAL_MIN = 159
+    RED_HUE_MIN = 0
+    RED_HUE_MAX = 255
+    RED_SAT_MIN = 0
+    RED_SAT_MAX = 255
+    RED_VAL_MIN = 100
     RED_VAL_MAX = 255
     #death indicators
     X_WIDTH = 8
@@ -92,18 +96,31 @@ class OwlVision:
         [1827, 185],
     ]
 
-    def __init__(self, baseImgUrl):
-        self.baseImgUrl = baseImgUrl
-        self.baseImg = cv2.imread(baseImgUrl);
-        self.baseImgFrames = [
-            self.crop2gray(
-                baseImgUrl,
-                point[0],
-                point[1],
-                point[0] + self.frameWidth,
-                point[1] + self.frameHeight
-            ) for point in self.frameStartPoints
-        ]
+    #numbers
+    NUMBER_WIDTH = 15
+    NUMBER_HEIGHT = 36
+
+    leftNumberStartPoints = [
+        [59, 118],
+        [161, 118],
+        [269, 118],
+        [377, 118],
+        [483, 118],
+        [587, 118],
+        [1239, 118],
+        [1348, 118],
+        [1450, 118],
+        [1560, 118],
+        [1666, 118],
+        [1769, 118],
+    ]
+
+    rightNumberStartPoints = [
+        [x[0] + 12, x[1]] for x in leftNumberStartPoints
+    ]
+
+
+    def __init__(self, heros, usernames, homeTeam, awayTeam, winner):
         self.icons = {
             "dva": self.trim2gray("./images/icons/dva.png", 0, 0, 0, 0),
             "orisa": self.trim2gray("./images/icons/orisa.png", 0, 0, 0, 0),        
@@ -138,6 +155,31 @@ class OwlVision:
             "moira": self.trim2gray("./images/icons/moira.png", 0, 0, 0, 0),
             "zenyatta": self.trim2gray("./images/icons/zenyatta.png", 0, 0, 0, 0),
         }
+        self.heros = heros
+        self.usernames = usernames
+        self.homeTeam = homeTeam
+        self.awayTeam = awayTeam
+        self.winner = winner
+
+    def setImage(self, baseImgUrl):
+        if type(baseImgUrl) is str:
+            self.baseImgUrl = baseImgUrl
+            self.baseImg = cv2.imread(baseImgUrl)
+        else:
+            self.baseImgUrl = None;
+            self.baseImg = baseImgUrl;
+        self.baseImgFrames = [
+            self.crop2gray(
+                baseImgUrl,
+                point[0],
+                point[1],
+                point[0] + self.frameWidth,
+                point[1] + self.frameHeight
+            ) for point in self.frameStartPoints
+        ]
+        #apply contrast
+        for icon in self.icons:
+            self.icons[icon] = self.adjustBC(self.icons[icon], 1.5, 0)
         self.healthBars = [
             self.crop(
                 baseImgUrl,
@@ -158,24 +200,62 @@ class OwlVision:
             ) for point in self.xStartPoints
         ]
 
+        self.leftNumbers = [
+            self.crop2gray(
+                baseImgUrl,
+                point[0],
+                point[1],
+                point[0] + self.NUMBER_WIDTH,
+                point[1] + self.NUMBER_HEIGHT
+            )for point in self.leftNumberStartPoints
+        ]
+
+        self.rightNumbers = [
+            self.crop2gray(
+                baseImgUrl,
+                point[0],
+                point[1],
+                point[0] + self.NUMBER_WIDTH,
+                point[1] + self.NUMBER_HEIGHT
+            ) for point in self.rightNumberStartPoints
+        ]
     def crop2gray(self, img_src, x1, y1, x2, y2):
-        img = cv2.imread(img_src, 0)
+        img = None
+        if(type(img_src) is str):
+            img = cv2.imread(img_src, 0)
+        else:
+            img = img_src.copy()
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         return img[y1:y2, x1:x2]
     def crop(self, img_src, x1, y1, x2, y2):
-        img = cv2.imread(img_src)
+        img = None
+        if(type(img_src) is str):
+            img = cv2.imread(img_src, 0)
+        else:
+            img = img_src.copy()
         return img[y1:y2, x1:x2]
 
     def trim2gray(self, img_src, top, right, bottom, left):
-        img = cv2.imread(img_src, 0)
+        img = None
+        if(type(img_src) is str):
+            img = cv2.imread(img_src, 0)
+        else:
+            img = img_src.copy()
+            img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         w, h = img.shape[::-1]
         return img[top:h-bottom, left:w-right]
     
-    def getMatchLocations(self, base_img, template_img):
+    def getMatchLocations(self, base_img, template_img, threshold):
         res = cv2.matchTemplate(base_img, template_img, cv2.TM_CCOEFF_NORMED )
-        return np.where(res >= self.threshold)
+        return np.where(res >= threshold)
     
-    def drawHeroLocations(self, locations, base_img):
-        w, h = self.icons["dva"].shape
+    def drawHeroLocations(self, locations, base_img, hero):
+        w, h = self.icons[hero].shape
+        for pt in zip(*locations[::-1]):
+            cv2.rectangle(base_img, pt, (pt[0]+w, pt[1]+h), (0, 255, 255), 1)
+
+    def drawNumberLocations(self, locations, base_img, number_img):
+        h, w = number_img.shape
         for pt in zip(*locations[::-1]):
             cv2.rectangle(base_img, pt, (pt[0]+w, pt[1]+h), (0, 255, 255), 1)
 
@@ -183,10 +263,11 @@ class OwlVision:
         return len(locations[0])
     
     def detectHero(self, img):
+        img = self.adjustBC(img, 1.5, 0)
         hero = None
         maxScore = 0
         for key in self.icons:
-            locations = self.getMatchLocations(img, self.icons[key])
+            locations = self.getMatchLocations(img, self.icons[key], self.threshold)
             score = self.getScoreFromLocations(locations)
             if(score > maxScore):
                 maxScore = score
@@ -272,7 +353,7 @@ class OwlVision:
         cyan_health = self.getRightMostPositionFromMask(cyan_mask)
         yellow_mask = self.applyYellowHealthMask(img)
         yellow_health = self.getRightMostPositionFromMask(yellow_mask)
-        return max(white_health, cyan_health, yellow_health) / self.HEALTH_WIDTH
+        return max(white_health, cyan_health, yellow_health) / self.HEALTH_WIDTH * 100
     
     def getAllHealth(self):
         return [self.getHealth(x) for x in self.healthBars]
@@ -294,9 +375,119 @@ class OwlVision:
     def areDead(self):
         return [self.isDead(x) for x in self.xIcons]
     
-Arena = OwlVision('./test-images/3.png')
-# Arena.showImage(Arena.applyYellowHealthMask(Arena.healthBars[3]))
-# Arena.showImage(Arena.icons['winston2'])
-# mask = Arena.applyYellowHealthMask(Arena.healthBars[3])
-# print(Arena.getRightMostPositionFromMask(mask))
-print(Arena.areDead())
+    def areAlive(self):
+        return [not self.isDead(x) for x in self.xIcons]
+
+    def adjustBC(self, img, alpha, beta):
+        return cv2.addWeighted(img, alpha, np.zeros(img.shape, img.dtype),0, beta)
+    
+    def getUltCharges(self):
+        leftNumbers = []
+        rightNumbers = []
+        out = []
+
+        #left number
+        for x in self.leftNumbers:
+            leftNumbers.append(self.predictNumber(x))
+        
+        #right numbers
+        for x in self.rightNumbers:
+            rightNumbers.append(self.predictNumber(x))
+        
+        for i in range(12):
+            if leftNumbers[i] == None and rightNumbers[i] == None:
+                out.append('100');
+            else:
+                if leftNumbers[i] == None:
+                    out.append( str(rightNumbers[i]) )
+                else:
+                    out.append( str(leftNumbers[i]) + str(rightNumbers[i]) )
+        
+        return out;
+    
+    # def saveNumberImages(self, file_name, out_dir):
+    #     for i, x in enumerate(Arena.leftNumbers):
+    #         fileName = file_name+"_left_"+str(i)+'.png';
+    #         path = os.path.join(out_dir, fileName)
+    #         cv2.imwrite(path, x);
+
+    #     for i, x in enumerate(Arena.rightNumbers):
+    #         fileName = file_name+"_right_"+str(i)+'.png';
+    #         path = os.path.join(out_dir, fileName)
+    #         cv2.imwrite(path, x);
+
+    def setWinner(self, winner):
+        self.winner = winner
+
+    def predictToNumber(self, predict):
+        if 1. in predict.tolist():
+            x = predict.tolist().index(1.)
+        else:
+            return None
+        numbers = {
+            0: 0,
+            1: 0,
+            2: 1,
+            3: 1,
+            4: 2,
+            5: 2,
+            6: 3,
+            7: 3,
+            8: 4,
+            9: 4,
+            10: 5,
+            11: 5,
+            12: 6,
+            13: 6,
+            14: 7,
+            15: 7, 
+            16: 8,
+            17: 8,
+            18: 9,
+            19: 9,
+            20: None,
+        }
+        return numbers[x]
+    
+    def predictNumber(self, img):
+        img = cv2.resize(img, (32, 32));
+        img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
+        prediction = self.numberModel.predict(np.array([img]))[0]
+        return self.predictToNumber(prediction);
+
+    def createPlayer(self, hero, ultCharge, isAlive, health, username):
+        out = {}
+        out['hero'] = hero
+        out['ultCharge'] = ultCharge
+        out['isAlive'] = isAlive
+        out['health'] = health
+        out['username'] = username
+        return out
+
+    def createInputState(self, winner, homeTeam, awayTeam, homePlayers, awayPlayers):
+        out = {}
+        if winner == "HOME" or winner == "AWAY":
+            out['winner'] = winner
+        else:
+            out['winner'] = ''
+        out['home'] = {}
+        out['away'] = {}
+
+        #set teams
+        out['home']['team'] = homeTeam
+        out['away']['team'] = awayTeam
+
+        #init player arrays
+        out['home']['players'] = homePlayers
+        out['away']['players'] = awayPlayers
+
+        return out
+    
+    def createInputStateFromBaseImg(self):
+        ultCharges = self.getUltCharges();
+        healthBars = self.getAllHealth();
+        areAlive = self.areAlive();
+        homeTeam = [self.createPlayer(self.heros[i], ultCharges[i], areAlive[i], healthBars[i], self.usernames[i]) for i in range(6, 12)];
+        awayTeam =  [self.createPlayer(self.heros[i], ultCharges[i], areAlive[i], healthBars[i], self.usernames[i]) for i in range(6)];
+        return self.createInputState(self.winner, self.homeTeam, self.awayTeam, homeTeam, awayTeam)
+    

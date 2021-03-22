@@ -12,11 +12,12 @@ const fire = () =>{
     const rawData = fs.readFileSync(STATE_FILE);
     const jsonData = JSON.parse(rawData);
     io.emit("owlarena", jsonData)
-    console.log('fire')
 }
 
 http.listen(5000, () => {
-  console.log('listening on *:3000');
+  console.log('Listening on port:3000');
+  console.log(`Listening to state file ${STATE_FILE}`);
+
 
   fs.watchFile(STATE_FILE, {interval:300}, ()=>{
       fire();

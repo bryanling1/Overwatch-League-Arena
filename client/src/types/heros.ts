@@ -26,7 +26,7 @@ export enum Heros{
     widowmaker = "WIDOWMAKTER",
     ana = "ANA",
     baptiste = "BAPTISTE",
-    brigitte = "BRIGETTE",
+    brigitte = "BRIGITTE",
     lucio = "LUCIO",
     mercy = "MERCY",
     moira = "MOIRA",

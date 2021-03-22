@@ -1,2 +1,5 @@
 /videos
 /test-images
+*.json
+__pycache__
+/train
