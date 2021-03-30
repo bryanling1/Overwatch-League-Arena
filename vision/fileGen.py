@@ -10,7 +10,7 @@ def writeObjToJSON(obj, file):
         json.dump(obj, outfile)
 
 def run(videoSource, heros, usernames, homeTeam, awayTeam, winner, everyNFrames, startFrame, endFrame, dest, name):
-    vision = OwlVision(heros, usernames, homeTeam, awayTeam, winner)
+    vision = OwlVision(heros, usernames, homeTeam, awayTeam, "")
     capture = cv2.VideoCapture(videoSource)
     frames = [];
     frame = 0
@@ -24,7 +24,6 @@ def run(videoSource, heros, usernames, homeTeam, awayTeam, winner, everyNFrames,
             continue;
         if(frame > endFrame):
             vision.setImage(img)
-            vision.setWinner(winner)
             frames.append(vision.createInputStateFromBaseImg())
             print('Generated frame '+str(frame_gen_count)+'/'+str(frames_to_gen))
             break; 

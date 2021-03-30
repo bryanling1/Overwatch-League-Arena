@@ -121,40 +121,7 @@ class OwlVision:
 
 
     def __init__(self, heros, usernames, homeTeam, awayTeam, winner):
-        self.icons = {
-            "dva": self.trim2gray("./images/icons/dva.png", 0, 0, 0, 0),
-            "orisa": self.trim2gray("./images/icons/orisa.png", 0, 0, 0, 0),        
-            "reinhardt": self.trim2gray("./images/icons/reinhardt.png", 0, 0, 0, 0),
-            "roadhog": self.trim2gray("./images/icons/roadhog.png", 0, 0, 0, 0),    
-            "sigma": self.trim2gray("./images/icons/sigma.png", 0, 0, 0, 0),        
-            "winston": self.trim2gray("./images/icons/winston.png", 0, 0, 0, 0),    
-            "ball": self.trim2gray("./images/icons/ball.png", 0, 0, 0, 0),
-            "zarya": self.trim2gray("./images/icons/zarya.png", 0, 0, 0, 0),        
-            "ashe": self.trim2gray("./images/icons/ashe.png", 0, 0, 0, 0),
-            "bastion": self.trim2gray("./images/icons/bastion.png", 0, 0, 0, 0),    
-            "doomfist": self.trim2gray("./images/icons/doomfist.png", 0, 0, 0, 0),  
-            "echo": self.trim2gray("./images/icons/echo.png", 0, 0, 0, 0),
-            "genji": self.trim2gray("./images/icons/genji.png", 0, 0, 0, 0),
-            "hanzo": self.trim2gray("./images/icons/hanzo.png", 0, 0, 0, 0),
-            "junkrat": self.trim2gray("./images/icons/junkrat.png", 0, 0, 0, 0),
-            "mccree": self.trim2gray("./images/icons/mccree.png", 0, 0, 0, 0),
-            "mei": self.trim2gray("./images/icons/mei.png", 0, 0, 0, 0),
-            "pharah": self.trim2gray("./images/icons/pharah.png", 0, 0, 0, 0),
-            "reaper": self.trim2gray("./images/icons/reaper.png", 0, 0, 0, 0),
-            "soldier": self.trim2gray("./images/icons/soldier.png", 0, 0, 0, 0),
-            "sombra": self.trim2gray("./images/icons/sombra.png", 0, 0, 0, 0),
-            "symmetra": self.trim2gray("./images/icons/symmetra.png", 0, 0, 0, 0),
-            "torb": self.trim2gray("./images/icons/torb.png", 0, 0, 0, 0),
-            "tracer": self.trim2gray("./images/icons/tracer.png", 0, 0, 0, 0),
-            "widowmaker": self.trim2gray("./images/icons/widowmaker.png", 0, 0, 0, 0),
-            "ana": self.trim2gray("./images/icons/ana.png", 0, 0, 0, 0),
-            "baptiste": self.trim2gray("./images/icons/baptiste.png", 0, 0, 0, 0),
-            "brigitte": self.trim2gray("./images/icons/brigitte.png", 0, 0, 0, 0),
-            "lucio": self.trim2gray("./images/icons/lucio.png", 0, 0, 0, 0),
-            "mercy": self.trim2gray("./images/icons/mercy.png", 0, 0, 0, 0),
-            "moira": self.trim2gray("./images/icons/moira.png", 0, 0, 0, 0),
-            "zenyatta": self.trim2gray("./images/icons/zenyatta.png", 0, 0, 0, 0),
-        }
+
         self.heros = heros
         self.usernames = usernames
         self.homeTeam = homeTeam
@@ -177,9 +144,6 @@ class OwlVision:
                 point[1] + self.frameHeight
             ) for point in self.frameStartPoints
         ]
-        #apply contrast
-        for icon in self.icons:
-            self.icons[icon] = self.adjustBC(self.icons[icon], 1.5, 0)
         self.healthBars = [
             self.crop(
                 baseImgUrl,
@@ -249,10 +213,6 @@ class OwlVision:
         res = cv2.matchTemplate(base_img, template_img, cv2.TM_CCOEFF_NORMED )
         return np.where(res >= threshold)
     
-    def drawHeroLocations(self, locations, base_img, hero):
-        w, h = self.icons[hero].shape
-        for pt in zip(*locations[::-1]):
-            cv2.rectangle(base_img, pt, (pt[0]+w, pt[1]+h), (0, 255, 255), 1)
 
     def drawNumberLocations(self, locations, base_img, number_img):
         h, w = number_img.shape
@@ -261,18 +221,6 @@ class OwlVision:
 
     def getScoreFromLocations(self, locations):
         return len(locations[0])
-    
-    def detectHero(self, img):
-        img = self.adjustBC(img, 1.5, 0)
-        hero = None
-        maxScore = 0
-        for key in self.icons:
-            locations = self.getMatchLocations(img, self.icons[key], self.threshold)
-            score = self.getScoreFromLocations(locations)
-            if(score > maxScore):
-                maxScore = score
-                hero = key
-        return hero
     
     def showImage(self, img):
         cv2.imshow('window', img)
@@ -396,12 +344,14 @@ class OwlVision:
         
         for i in range(12):
             if leftNumbers[i] == None and rightNumbers[i] == None:
-                out.append('100');
+                out.append(100);
             else:
                 if leftNumbers[i] == None:
-                    out.append( str(rightNumbers[i]) )
+                    out.append( rightNumbers[i] )
+                elif rightNumbers[i] == None: 
+                    out.append(0)
                 else:
-                    out.append( str(leftNumbers[i]) + str(rightNumbers[i]) )
+                    out.append( int(str(leftNumbers[i]) + str(rightNumbers[i]) ) )
         
         return out;
     
