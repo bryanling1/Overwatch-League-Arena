@@ -41,6 +41,6 @@ const JunkratWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.2);
         top: 36vh;
-        left: -1vw;
+        left: -3vw;
     }
 `

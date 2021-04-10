@@ -41,6 +41,6 @@ const MercyWrapper = styled(VideoWrapper)`
     & {
         transform: scale(3);
         top: 68vh;
-        left: -6.5vw;
+        left: -8vw;
     }
 `

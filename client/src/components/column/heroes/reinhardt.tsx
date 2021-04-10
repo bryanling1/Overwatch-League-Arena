@@ -41,6 +41,6 @@ const ReinhardtWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.7);
         top: 67vh;
-        left: 0vw;
+        left: -1.5vw;
     }
 `

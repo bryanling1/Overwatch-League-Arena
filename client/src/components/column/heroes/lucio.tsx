@@ -41,6 +41,6 @@ const LucioWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.5);
         top: 50vh;
-        left: -6vw;
+        left: -8vw;
     }
 `

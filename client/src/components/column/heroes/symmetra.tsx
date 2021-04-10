@@ -41,6 +41,6 @@ const SymmetraWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.8);
         top: 58vh;
-        left: -6vw;
+        left: -8vw;
     }
 `

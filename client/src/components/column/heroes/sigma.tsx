@@ -41,6 +41,6 @@ const SigmaWrapper = styled(VideoWrapper)`
     & {
         transform: scale(3);
         top: 69vh;
-        left: -4vw;
+        left: -6vw;
     }
 `

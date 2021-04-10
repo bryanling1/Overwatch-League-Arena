@@ -41,6 +41,6 @@ const AsheWrapper = styled(VideoWrapper)`
     & {
         transform: scale(3.3);
         top: 35vh;
-        left: -18vw;
+        left: -19vw;
     }
 `

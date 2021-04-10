@@ -41,6 +41,6 @@ const WinstonWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.3);
         top: 26vh;
-        left: 8vw;
+        left: 6vw;
     }
 `

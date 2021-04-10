@@ -41,6 +41,6 @@ const ZaryaWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.5);
         top: 50vh;
-        left: -5vw;
+        left: -7vw;
     }
 `

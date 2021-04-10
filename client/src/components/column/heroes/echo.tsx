@@ -41,6 +41,6 @@ const EchoWrapper = styled(VideoWrapper)`
     & {
         transform: scale(3.1);
         top: 70vh;
-        left: -8vw;
+        left: -9vw;
     }
 `

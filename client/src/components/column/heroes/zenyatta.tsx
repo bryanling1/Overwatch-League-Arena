@@ -41,7 +41,7 @@ const ZenyattaWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2);
         top: 25vh;
-        left: -3vw;
+        left: -5vw;
     }
 `
 

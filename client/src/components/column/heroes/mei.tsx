@@ -41,6 +41,6 @@ const MeiWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.5);
         top: 45vh;
-        left: -6.5vw;
+        left: -9vw;
     }
 `

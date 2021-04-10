@@ -41,6 +41,6 @@ const GenjiWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.3);
         top: 43vh;
-        left: -3vw;
+        left: -5vw;
     }
 `

@@ -41,6 +41,6 @@ const SombraWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.8);
         top: 60vh;
-        left: -5vw;
+        left: -6vw;
     }
 `

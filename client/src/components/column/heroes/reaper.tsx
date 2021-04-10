@@ -41,6 +41,6 @@ const ReaperWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.7);
         top: 63vh;
-        left: -5vw;
+        left: -7vw;
     }
 `

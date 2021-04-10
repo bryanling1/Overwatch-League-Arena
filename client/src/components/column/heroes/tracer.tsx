@@ -41,6 +41,6 @@ const TracerWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.5);
         top: 46vh;
-        left: -4vw;
+        left: -5vw;
     }
 `

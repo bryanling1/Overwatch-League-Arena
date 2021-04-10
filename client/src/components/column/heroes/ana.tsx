@@ -41,6 +41,6 @@ const AnaWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.5);
         top: 57vh;
-        left: -5.5vw;
+        left: -7vw;
     }
 `

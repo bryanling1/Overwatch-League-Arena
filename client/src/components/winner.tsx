@@ -16,7 +16,7 @@ const Winner = (props:WinnerProps) =>{
             />
             <SecondIn 
                 width={props.input.winner === '' ? 0 : 100}
-                backgroundPosition={props.input.winner === '' ? 500 : 760}
+                backgroundPosition={props.input.winner === '' ? 100 : 510}
                 color={props.input.winner ? getWinnerColors(props.input[props.input.winner.toLowerCase()].team)[1] : getWinnerColors(undefined)[1]}
                 backgroundImage={props.input.winner && getTeamLogo(props.input[props.input.winner.toLowerCase()].team)}
             />
@@ -59,5 +59,5 @@ const SecondIn = styled.div`
     background-image: url( ${(props:InType)=>props.backgroundImage});
     background-position: ${(props:InType)=>props.backgroundPosition}px;
     background-repeat: no-repeat;
-    background-size: 600px;
+    background-size: 900px;
 `

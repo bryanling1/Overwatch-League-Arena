@@ -41,6 +41,6 @@ const DoomfistWrapper = styled(VideoWrapper)`
     & {
         transform: scale(3);
         top: 65vh;
-        left: -3vw;
+        left: -5vw;
     }
 `

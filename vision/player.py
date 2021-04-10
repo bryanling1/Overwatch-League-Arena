@@ -12,6 +12,10 @@ def run(vision_file_src, state_file_src):
     startFrame = None
     endFrame = None
     frames = None
+    window_name = 'video'
+
+    # cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
+    # cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
     with open(vision_file_src, 'r') as vision_data:
         data = json.load(vision_data)
@@ -25,15 +29,18 @@ def run(vision_file_src, state_file_src):
 
     frame = 0;
     obj_counter = 0;
-    while frame < startFrame: 
-        frame = frame + 1
     
     while True: 
+        print(frame)
         if(frame > endFrame):
             break
 
         success, img = capture.read()
-        cv2.imshow('video', img)
+        cv2.imshow(window_name, img)
+
+        if(frame < startFrame):
+            frame = frame + 1
+            continue;
 
         if(frame % everyNFrames == 0):
             writeObjToJSON(frames[obj_counter], state_file_src)

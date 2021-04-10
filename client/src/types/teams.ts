@@ -76,7 +76,7 @@ export const getRingColor = (team:Teams):string =>{
         case Teams.eternal:
             return TeamColors[key][2];
         case Teams.fusion:
-            return TeamColors[key][1];
+            return TeamColors[key][0];
         case Teams.shock:
             return 'white';
         case Teams.dragons:
@@ -126,7 +126,7 @@ export const getGradientColor = (team:Teams):string =>{
         case Teams.eternal:
             return TeamColors[key][0];
         case Teams.fusion:
-            return TeamColors[key][0];
+            return TeamColors[key][1];
         case Teams.shock:
             return TeamColors[key][1];
         case Teams.justice:
@@ -177,7 +177,7 @@ export const getWinnerColors = (team:Teams):[string, string] =>{
         case Teams.fusion:
             return [TeamColors[key][0], TeamColors[key][1]];
         case Teams.shock:
-            return [TeamColors[key][1], TeamColors[key][0]];
+            return [TeamColors[key][0], TeamColors[key][1]];
         case Teams.justice:
             return [TeamColors[key][2], TeamColors[key][0]];
         case Teams.defiant:

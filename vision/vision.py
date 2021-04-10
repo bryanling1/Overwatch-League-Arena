@@ -128,6 +128,9 @@ class OwlVision:
         self.awayTeam = awayTeam
         self.winner = winner
 
+    def deltaHealthStartPoints(self, x, y):
+        self.healthStartPoitns = [[a[0]+x, a[1]+y] for a in self.healthStartPoitns]
+        
     def setImage(self, baseImgUrl):
         if type(baseImgUrl) is str:
             self.baseImgUrl = baseImgUrl
@@ -183,6 +186,7 @@ class OwlVision:
                 point[1] + self.NUMBER_HEIGHT
             ) for point in self.rightNumberStartPoints
         ]
+
     def crop2gray(self, img_src, x1, y1, x2, y2):
         img = None
         if(type(img_src) is str):
@@ -191,6 +195,7 @@ class OwlVision:
             img = img_src.copy()
             img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         return img[y1:y2, x1:x2]
+
     def crop(self, img_src, x1, y1, x2, y2):
         img = None
         if(type(img_src) is str):
@@ -242,6 +247,14 @@ class OwlVision:
         #generate result
         return mask;
     
+    def setRedMask(self, hue_min, hue_max, sat_min, sat_max, val_min, val_max):
+        self.RED_HUE_MIN = hue_min
+        self.RED_HUE_MAX = hue_max
+        self.RED_SAT_MIN = sat_min
+        self.RED_SAT_MAX = sat_max
+        self.RED_VAL_MIN = val_min
+        self.RED_VAL_MAX = val_max
+        
     def applyWhiteHealthMask(self, img):
         return self.applyHSVMask(
             img,

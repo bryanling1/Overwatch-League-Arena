@@ -41,6 +41,6 @@ const BaptisteWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.7);
         top: 56vh;
-        left: -2vw;
+        left: -2.5vw;
     }
 `

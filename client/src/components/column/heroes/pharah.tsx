@@ -41,6 +41,6 @@ const PharahWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.7);
         top: 60vh;
-        left: -4vw;
+        left: -6vw;
     }
 `

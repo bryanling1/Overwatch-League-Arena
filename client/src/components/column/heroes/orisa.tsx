@@ -41,6 +41,6 @@ const OrisaWrapper = styled(VideoWrapper)`
     & {
         transform: scale(1.9);
         top: 30vh;
-        left: 4vw;
+        left: 2vw;
     }
 `

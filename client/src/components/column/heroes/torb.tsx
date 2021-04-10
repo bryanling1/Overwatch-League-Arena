@@ -41,6 +41,6 @@ const TorbWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.3);
         top: 7vh;
-        left: -3vw;
+        left: -5vw;
     }
 `

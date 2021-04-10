@@ -41,6 +41,6 @@ const WidowmakerWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.3);
         top: 50vh;
-        left: -6vw;
+        left: -6.6vw;
     }
 `

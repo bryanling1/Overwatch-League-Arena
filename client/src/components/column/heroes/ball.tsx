@@ -41,6 +41,6 @@ const BallWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.5);
         top: 53vh;
-        left: -7vw;
+        left: -8vw;
     }
 `

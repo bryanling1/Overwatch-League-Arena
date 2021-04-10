@@ -41,6 +41,6 @@ const SoldierWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.6);
         top: 55vh;
-        left: -5vw;
+        left: -6vw;
     }
 `

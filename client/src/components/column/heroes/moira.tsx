@@ -41,6 +41,6 @@ const MoiraWrapper = styled(VideoWrapper)`
     & {
         transform: scale(2.8);
         top: 70vh;
-        left: -7.5vw;
+        left: -9.5vw;
     }
 `

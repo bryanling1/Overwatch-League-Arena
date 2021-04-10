@@ -41,6 +41,6 @@ const RoadhogWrapper = styled(VideoWrapper)`
     & {
         transform: scale(1.8);
         top: 30vh;
-        left: -3vw;
+        left: -5vw;
     }
 `
