@@ -1,5 +1,5 @@
 # Overwatch League Arena
-[![IYoutTube Demo](https://i.ibb.co/sq6dRBR/thumbnail.png)](https://www.youtube.com/watch?v=W-97t5X5_Cs)
+[![IYoutTube Demo](https://i.ibb.co/qJ9xRXP/image.png)](https://www.youtube.com/watch?v=W-97t5X5_Cs)
 
 ## Table of Contents
 - [Overwatch League Arena](#overwatch-league-arena)
