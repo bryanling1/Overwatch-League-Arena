@@ -1,5 +1,7 @@
 # Overwatch League Arena
-<a href="https://www.youtube.com/watch?v=W-97t5X5_Cs"><img src="https://i.ibb.co/qJ9xRXP/image.png"/></a><img src="./frontend-preview.png"/>
+<div style="display:flex">
+<a href="https://www.youtube.com/watch?v=W-97t5X5_Cs"><img width="400px" src="https://i.ibb.co/qJ9xRXP/image.png"/></a><img src="./frontend-preview.png" width="400px"/>
+</div>                                                                                                         
 
 ## Table of Contents
 - [Overwatch League Arena](#overwatch-league-arena)
