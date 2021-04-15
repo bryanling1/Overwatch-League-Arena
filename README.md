@@ -1,5 +1,11 @@
 # Overwatch League Arena
-<div style="display:flex">
+<style>
+  .banner{
+  display: flex;
+  align-items: center;
+}
+</style>
+<div class="banner">
 <a href="https://www.youtube.com/watch?v=W-97t5X5_Cs"><img width="500px" src="https://i.ibb.co/qJ9xRXP/image.png"/></a><img src="./frontend-preview.png" width="500px"/>
 </div>                                                                                                         
 
