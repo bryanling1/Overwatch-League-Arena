@@ -39,7 +39,11 @@ By utilizing some basic computer vision technologies, these displays can be imit
 
 You will need `npm` for the **frontend** and **backend**, and `conda` for the **computer vision** portion of the project.
 
-The video assets of this project, which include the hero idle animations with skins for each team, are not included in this repo due to file size. You will have to record them yourself, or running the frontend client throw errors saying some hero video can not be found in the `client/public/videos` directory.
+The video assets of this project, which include the hero idle animations with skins for each team, are not included in this repo due to file size. 
+
+You can download them here: [Google Drive](https://drive.google.com/file/d/1ZsgEojfMDR3f11bEwEmiRWTMVdQW93ya/view?usp=sharing)
+
+Import them into the `client/public/videos` directory.
 
 You can do so by launching `Overwatch` and previewing the Overwatch League skins. You can then hit `Alt + X` to remove the HUD. Additionally, a script has been included in `vision/loopFinder` to aid in finding animation loops.
 
