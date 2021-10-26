@@ -16,7 +16,7 @@ import Genji from './heroes/genji';
 import Hanzo from './heroes/hanzo';
 import Junkrat from './heroes/junkrat';
 import Lucio from './heroes/lucio';
-import Mccree from './heroes/mccree';
+import Cassidy from './heroes/cassidy';
 import Mei from './heroes/mei';
 import Mercy from './heroes/mercy';
 import Moira from './heroes/moira';
@@ -67,7 +67,7 @@ const HeroSkin = (props:StateProps) =>{
             { hero === Heros.hanzo && <Hanzo team={team}/>}
             { hero === Heros.junkrat && <Junkrat team={team}/>}
             { hero === Heros.lucio && <Lucio team={team}/>}
-            { hero === Heros.mccree && <Mccree team={team}/>}
+            { hero === Heros.cassidy && <Cassidy team={team}/>}
             { hero === Heros.mei && <Mei team={team}/>}
             { hero === Heros.mercy && <Mercy team={team}/>}
             { hero === Heros.moira && <Moira team={team}/>}
