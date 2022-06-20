@@ -1,6 +1,6 @@
 # Overwatch League Arena
 
-<a href="https://www.youtube.com/watch?v=W-97t5X5_Cs"><img width="500px" src="https://i.ibb.co/qJ9xRXP/image.png"/></a><img src="./frontend-preview.png" width="500px"/>                                                                                                      
+<a href="https://www.youtube.com/watch?v=W-97t5X5_Cs">Youtube Feature</a><img src="./frontend-preview.png" width="500px"/>                                                                                                      
 
 ## Table of Contents
 - [Overwatch League Arena](#overwatch-league-arena)
