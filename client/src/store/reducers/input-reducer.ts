@@ -89,7 +89,7 @@ const dummyData:Input = {
                 username:"player 5",
             },
             {
-                hero: Heros.mccree,
+                hero: Heros.cassidy,
                 ultCharge: 50,
                 isAlive: true,
                 health: 100,

@@ -14,7 +14,7 @@ export enum Heros{
     genji = "GENJI",
     hanzo = "HANZO",
     junkrat = "JUNKRAT",
-    mccree = "MCCREE",
+    cassidy = "CASSIDY",
     mei = "MEI",
     pharah = "PHARAH",
     reaper = "REAPER",
@@ -46,7 +46,7 @@ export enum HeroUltIcons{
     hanzo = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/4/44/Ability-hanzo4.png',
     junkrat = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/3/32/Ability-Junkrat5.png',
     lucio = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/2/24/Ability-Lucio4.png',
-    mccree = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/68/Ability-mccree4.png',
+    cassidy = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/6/68/Ability-mccree4.png',
     mei = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f0/Ability-mei4.png',
     mercy = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/f/f9/Ability-mercy6.png',
     moira = 'https://static.wikia.nocookie.net/overwatch_gamepedia/images/0/05/Ability_Moira_Coalescence.png',
@@ -84,7 +84,7 @@ export enum HeroHealth{
     genji = 'genji-health.svg',
     hanzo = 'hanzo-health.svg',
     junkrat = 'junkrat-health.svg',
-    mccree = 'mccree-health.svg',
+    cassidy = 'cassidy-health.svg',
     mei = 'mei-health.svg',
     pharah = 'pharah-health.svg',
     reaper = 'reaper-health.svg',
@@ -135,8 +135,8 @@ export const getHeroHealth = (hero: Heros) =>{
                 return HeroHealth.hanzo;
         case Heros.junkrat:
                 return HeroHealth.junkrat;
-        case Heros.mccree:
-                return HeroHealth.mccree;
+        case Heros.cassidy:
+                return HeroHealth.cassidy;
         case Heros.mei:
                 return HeroHealth.mei;
         case Heros.pharah:

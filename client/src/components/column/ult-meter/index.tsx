@@ -98,8 +98,8 @@ const UltMeter = (props:StateProps) =>{
                     return HeroUltIcons.hanzo
             case Heros.junkrat:
                     return HeroUltIcons.junkrat
-            case Heros.mccree:
-                    return HeroUltIcons.mccree
+            case Heros.cassidy:
+                    return HeroUltIcons.cassidy
             case Heros.mei:
                     return HeroUltIcons.mei
             case Heros.pharah:
